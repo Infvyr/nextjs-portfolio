@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"module": "commonjs",
+		"target": "es6"
+	},
+	"include": ["app", "public", "styles", "pages"],
+	"paths": {},
+	"exclude": ["node_modules"]
+}

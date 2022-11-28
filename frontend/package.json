@@ -1,0 +1,33 @@
+{
+	"name": "next-portfolio",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+	},
+	"dependencies": {
+		"@chakra-ui/react": "^2.4.1",
+		"@emotion/react": "^11.10.5",
+		"@emotion/styled": "^11.10.5",
+		"@next/font": "^13.0.4",
+		"framer-motion": "^7.6.7",
+		"next": "^13.0.4",
+		"next-seo": "^5.14.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-icons": "^4.6.0",
+		"react-image-gallery": "^1.2.11"
+	},
+	"devDependencies": {
+		"@next/eslint-plugin-next": "^13.0.4",
+		"@svgr/webpack": "^6.5.1",
+		"eslint": "^8.27.0",
+		"eslint-config-next": "^13.0.4",
+		"eslint-config-prettier": "^8.5.0",
+		"prettier": "^2.7.1"
+	}
+}
