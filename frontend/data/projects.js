@@ -315,7 +315,7 @@ export const projects = [
 		tags: ["Next", "Hasura GraphQL", "Magic link", "JWT", "SSR", "ISR", "YouTube API"],
 		repoUrl: "https://github.com/Infvyr/NetFilms",
 		liveUrl: undefined,
-		category: "mext"
+		category: "next"
 	},
 	{
 		createdAt: "2022-09-23",
