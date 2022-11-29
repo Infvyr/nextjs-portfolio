@@ -2,6 +2,7 @@ import { useRef } from "react";
 import {
 	Button,
 	Flex,
+	Grid,
 	Heading,
 	HStack,
 	Modal,
@@ -12,7 +13,8 @@ import {
 	ModalOverlay,
 	Tag,
 	Text,
-	useDisclosure
+	useDisclosure,
+	useColorModeValue
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,11 +27,6 @@ import { FiExternalLink } from "react-icons/fi";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 const sxFigure = {
-	"&": {
-		position: "relative",
-		aspectRatio: "16 / 9",
-		overflow: "hidden"
-	},
 	"&:hover": {
 		cursor: "pointer"
 	},
@@ -61,8 +58,21 @@ export function ProjectItem(props) {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const finalRef = useRef(null);
 
+	const cardBgColor = useColorModeValue("whiteAlpha.800", "whiteAlpha.50");
+
 	return (
-		<Flex flexDirection="column" gap={5}>
+		<Grid
+			templateRows={[
+				"225px 1fr",
+				"225px 1fr",
+				"140px 1fr minmax(min(50px, 100px), 200px)",
+				"225px 1fr minmax(clamp(50px, 100px, 160px), 160px)"
+			]}
+			gap={5}
+			pb={5}
+			bgColor={cardBgColor}
+			borderRadius="lg"
+		>
 			<Flex
 				as="figure"
 				justifyContent="center"
@@ -86,7 +96,7 @@ export function ProjectItem(props) {
 					opacity="0.25"
 					transform="translate(-50%,-50%) scale(0.2)"
 				>
-					<MdZoomOutMap size={30} />
+					<MdZoomOutMap size={30} fill="white" />
 				</Flex>
 				<Image
 					src={poster}
@@ -114,59 +124,62 @@ export function ProjectItem(props) {
 					</ModalContent>
 				</Modal>
 			</Flex>
-			<Flex as="header" flexDirection="column" alignItems="center" gap={4} flex={1}>
+			<Flex as="header" flexDirection="column" alignItems="center" gap={4} px={3}>
 				<Heading as="h3" fontSize={["xl", "xl", "xl", "2xl"]}>
 					{title}
 				</Heading>
 				<Text textAlign="center">{description}</Text>
 			</Flex>
-			{!!tags.length && (
-				<Flex as="footer" justifyContent="center" flexWrap="wrap" gap={3} alignContent="flex-end">
-					{tags.map((tag) => (
-						<Tag key={tag} cursor="default">
-							{tag}
-						</Tag>
-					))}
-				</Flex>
-			)}
-			<HStack mt={5} spacing={3}>
-				{repoUrl && (
-					<Link
-						href={repoUrl}
-						target="_blank"
-						tabIndex={-1}
-						style={{
-							display: "flex",
-							alignItems: "center"
-						}}
-					>
-						<Button variant="ghost" aria-label="Go to repository">
-							<VscSourceControl />
-							<Text as="span" ml={2}>
-								Source
-							</Text>
-						</Button>
-					</Link>
+
+			<Grid as="footer" gridTemplateRows="1fr 40px" gap={5} px={3}>
+				{!!tags.length && (
+					<Flex justifyContent="center" flexWrap="wrap" gap={3} alignContent="flex-start">
+						{tags.map((tag) => (
+							<Tag key={tag} cursor="default">
+								{tag}
+							</Tag>
+						))}
+					</Flex>
 				)}
-				{liveUrl && (
-					<Link
-						href={liveUrl}
-						target="_blank"
-						tabIndex={-1}
-						style={{
-							display: "flex",
-							alignItems: "center"
-						}}
-					>
-						<Button variant="ghost" aria-label="Go live">
-							<FiExternalLink />
-							<Text as="span" ml={2}>
-								Demo
-							</Text>
-						</Button>
-					</Link>
-				)}
-			</HStack>
-		</Flex>
+				<HStack py={[null, null, null, null, 5]} spacing={3} justify="center">
+					{repoUrl && (
+						<Link
+							href={repoUrl}
+							target="_blank"
+							tabIndex={-1}
+							style={{
+								display: "flex",
+								alignItems: "center"
+							}}
+						>
+							<Button variant="ghost" aria-label="Go to repository">
+								<VscSourceControl />
+								<Text as="span" ml={2}>
+									Source
+								</Text>
+							</Button>
+						</Link>
+					)}
+					{liveUrl && (
+						<Link
+							href={liveUrl}
+							target="_blank"
+							tabIndex={-1}
+							style={{
+								display: "flex",
+								alignItems: "center"
+							}}
+						>
+							<Button variant="ghost" aria-label="Go live">
+								<FiExternalLink />
+								<Text as="span" ml={2}>
+									Demo
+								</Text>
+							</Button>
+						</Link>
+					)}
+				</HStack>
+			</Grid>
+		</Grid>
 	);
 }

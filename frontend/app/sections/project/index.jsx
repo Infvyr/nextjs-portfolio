@@ -14,7 +14,7 @@ export function ProjectsSection() {
 			<Box py={8} />
 
 			{!!projects.length && (
-				<SimpleGrid spacingY={20} spacingX={6} columns={[1, 3]}>
+				<SimpleGrid spacingY={10} spacingX={6} columns={[1, 1, 3]}>
 					{projects
 						.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 						.map((project) => <ProjectItem key={project.title} project={project} />)
@@ -22,7 +22,7 @@ export function ProjectsSection() {
 				</SimpleGrid>
 			)}
 
-			<Center mt={16}>
+			<Center mt={[8, 8, 16]}>
 				<Link href="/projects" tabIndex={-1} aria-label="Go to project page">
 					<Button aria-label="See more projects">More projects</Button>
 				</Link>
