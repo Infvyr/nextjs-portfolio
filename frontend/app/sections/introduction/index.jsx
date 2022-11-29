@@ -89,8 +89,12 @@ export function WelcomeSection() {
 				<Text fontSize={["md", "lg"]} color={subTitleColor} mt={3} mb={10}>
 					Stick around to see some of my work.
 				</Text>
-				<Button aria-label="Latest projects">
-					<Link href="#projects" onClick={onClick}>
+				<Button aria-label="Latest projects" p="0">
+					<Link
+						href="#projects"
+						onClick={onClick}
+						style={{ display: "block", padding: "0 16px", lineHeight: "40px" }}
+					>
 						See my latest projects
 					</Link>
 				</Button>
