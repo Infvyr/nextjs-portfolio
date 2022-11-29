@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import {
 	Button,
 	Flex,
@@ -19,6 +19,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import ImageGallery from "react-image-gallery";
+import { Loader } from "components";
 import { blurDataUrl } from "util/theme-config";
 import { MdZoomOutMap } from "react-icons/md";
 import { VscSourceControl } from "react-icons/vsc";
@@ -54,9 +55,14 @@ const sxFigure = {
 
 export function ProjectItem(props) {
 	const { project } = props;
-	const { poster, title, description, images, tags, repoUrl, liveUrl } = project;
+	const { description, images, liveUrl, poster, repoUrl, stack, title } = project;
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const finalRef = useRef(null);
+
+	const galleryImages = images.map((img) => ({
+		original: img,
+		loading: "lazy"
+	}));
 
 	const cardBgColor = useColorModeValue("whiteAlpha.800", "whiteAlpha.50");
 
@@ -102,7 +108,7 @@ export function ProjectItem(props) {
 					src={poster}
 					width={250}
 					height={250}
-					alt="placeholder"
+					alt="poster"
 					placeholder="blur"
 					blurDataURL={blurDataUrl}
 					style={{ width: "100%", objectFit: "cover" }}
@@ -113,13 +119,15 @@ export function ProjectItem(props) {
 						<ModalHeader>{title} Gallery</ModalHeader>
 						<ModalCloseButton />
 						<ModalBody>
-							<ImageGallery
-								items={images}
-								showPlayButton={false}
-								showThumbnails={false}
-								showIndex
-								lazyload
-							/>
+							<Suspense fallback={<Loader width="100%" />}>
+								<ImageGallery
+									items={galleryImages}
+									showPlayButton={false}
+									showThumbnails={false}
+									showIndex
+									lazyload
+								/>
+							</Suspense>
 						</ModalBody>
 					</ModalContent>
 				</Modal>
@@ -132,9 +140,9 @@ export function ProjectItem(props) {
 			</Flex>
 
 			<Grid as="footer" gridTemplateRows="1fr 40px" gap={5} px={3}>
-				{!!tags.length && (
+				{!!stack.length && (
 					<Flex justifyContent="center" flexWrap="wrap" gap={3} alignContent="flex-start">
-						{tags.map((tag) => (
+						{stack.map((tag) => (
 							<Tag key={tag} cursor="default">
 								{tag}
 							</Tag>
