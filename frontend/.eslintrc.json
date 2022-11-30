@@ -2,7 +2,7 @@
 	"extends": [
 		"eslint:recommended",
 		"next",
-		"next/babel",
+//		"next/babel",
 		"next/core-web-vitals",
 		"prettier"
 	]

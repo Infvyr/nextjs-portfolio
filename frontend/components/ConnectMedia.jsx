@@ -1,19 +1,19 @@
 "use client";
 
 import { BsLinkedin, BsGithub, BsFillEnvelopeOpenFill } from "react-icons/bs";
-import { Box, Link as ChakraLink } from "@chakra-ui/react";
+import { Box, Link } from "@chakra-ui/react";
 
 const MediaIcons = [
 	{
 		id: "linkedin",
 		icon: <BsLinkedin />,
-		title: "Visit my LinkedIn profile",
+		title: "Visit LinkedIn profile",
 		url: "https://www.linkedin.com/in/vasile-novatchii"
 	},
 	{
 		id: "github",
 		icon: <BsGithub />,
-		title: "Visit my Github profile",
+		title: "Visit Github profile",
 		url: "https://github.com/Infvyr"
 	},
 	{
@@ -34,16 +34,21 @@ export function ConnectMedia() {
 			<Box as="ul" listStyleType="none" display="flex" align="center" gap={5}>
 				{MediaIcons.map((item) => (
 					<Box as="li" key={item.id}>
-						<ChakraLink
+						<Link
 							href={item.url}
 							target="_blank"
 							title={item.title}
+							aria-label={item.title}
 							fontSize={["15px", "20px"]}
 							textDecoration="none !important"
 							pos="relative"
+							_focusVisible={{
+								display: "block",
+								boxShadow: "outline"
+							}}
 						>
 							{item.icon}
-						</ChakraLink>
+						</Link>
 					</Box>
 				))}
 			</Box>

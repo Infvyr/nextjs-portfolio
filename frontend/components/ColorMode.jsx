@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, useColorMode } from "@chakra-ui/react";
+import { Button, SlideFade, useColorMode } from "@chakra-ui/react";
 import { BsMoon, BsSun } from "react-icons/bs";
 
 export function ColorMode() {
@@ -8,12 +8,31 @@ export function ColorMode() {
 
 	return (
 		<Button
-			bg="transparent"
+			variant="ghost"
 			onClick={toggleColorMode}
-			sx={{ "&:hover": { bgColor: "transparent" } }}
+			sx={{ "&": { position: "relative" }, "&:hover": { bgColor: "transparent" } }}
 			title={`Switch color mode to ${colorMode === "light" ? "dark" : "light"}`}
 		>
-			{colorMode === "light" ? <BsMoon /> : <BsSun />}
+			<SlideFade
+				offsetY="20px"
+				offsetX="20px"
+				in={colorMode === "light"}
+				style={{
+					position: "absolute"
+				}}
+			>
+				<BsMoon />
+			</SlideFade>
+			<SlideFade
+				offsetY="20px"
+				offsetX="-20px"
+				in={colorMode === "dark"}
+				style={{
+					position: "absolute"
+				}}
+			>
+				<BsSun />
+			</SlideFade>
 		</Button>
 	);
 }
