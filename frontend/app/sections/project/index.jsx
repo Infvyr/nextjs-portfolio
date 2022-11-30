@@ -5,20 +5,20 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { Box, Button, Center, SimpleGrid } from "@chakra-ui/react";
-import { HeadingDivider, Loader } from "components";
+import { HeadingDivider } from "components";
 import { ProjectItem } from "./ProjectItem";
 import { fetcher } from "util/fetcher";
 
 const DynamicLoader = dynamic(() => import("components/Loader").then((mod) => mod.Loader));
 
-const url = process.env.NEXT_PUBLIC_SANITY_LATEST_PROJECTS;
+const url = `${process.env.NEXT_PUBLIC_SANITY_URL}${process.env.NEXT_PUBLIC_SANITY_LATEST_PROJECTS}`;
 
 export function ProjectsSection() {
 	const { data, error } = useSWR(url, fetcher, { suspense: true });
 	const projects = data?.result;
 
 	if (error && !data) {
-		return null
+		return null;
 	}
 
 	return (

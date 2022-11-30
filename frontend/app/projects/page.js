@@ -10,7 +10,7 @@ import { Filter } from "./components/Filter";
 import { fetcher } from "util/fetcher";
 import Error from "../error";
 
-const url = process.env.NEXT_PUBLIC_SANITY_ALL_PROJECTS;
+const url = `${process.env.NEXT_PUBLIC_SANITY_URL}${process.env.NEXT_PUBLIC_SANITY_ALL_PROJECTS}`;
 
 export default function Page() {
 	const [category, setCategory] = useState();
