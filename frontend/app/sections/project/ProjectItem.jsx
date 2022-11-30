@@ -28,7 +28,7 @@ import { FiExternalLink } from "react-icons/fi";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 const sxFigure = {
-	"&:hover": {
+	"&:hover, &:focus, &:focus-within": {
 		cursor: "pointer"
 	},
 	"&:before": {
@@ -42,10 +42,10 @@ const sxFigure = {
 		transformOrigin: "center",
 		transition: "width 300ms ease-in-out, height 300ms ease-in-out"
 	},
-	"&:hover:before": {
+	"&:hover:before, &:focus:before,  &:focus-within:before": {
 		width: "100%"
 	},
-	"&:hover .zoom": {
+	"&:hover .zoom, &:focus .zoom, &:focus-within .zoom": {
 		visibility: "visible",
 		opacity: 1,
 		transform: "translate(-50%,-50%) scale(1)",
@@ -66,6 +66,14 @@ export function ProjectItem(props) {
 
 	const cardBgColor = useColorModeValue("whiteAlpha.800", "whiteAlpha.50");
 
+	const onKeyDown = (event) => {
+		if (event.code === "Enter" && !event.shiftKey) {
+			event.preventDefault();
+
+			onOpen();
+		}
+	};
+
 	return (
 		<Grid
 			templateRows={[
@@ -84,7 +92,7 @@ export function ProjectItem(props) {
 				justifyContent="center"
 				pos="relative"
 				onClick={onOpen}
-				tabIndex={-1}
+				onKeyDown={onKeyDown}
 				sx={sxFigure}
 			>
 				<Flex
@@ -111,6 +119,8 @@ export function ProjectItem(props) {
 					alt="poster"
 					placeholder="blur"
 					blurDataURL={blurDataUrl}
+					aria-label="Press enter key to open gallery"
+					tabIndex="0"
 					style={{ width: "100%", objectFit: "cover" }}
 				/>
 				<Modal isOpen={isOpen} onClose={onClose} finalFocusRef={finalRef} isCentered>
@@ -133,17 +143,19 @@ export function ProjectItem(props) {
 				</Modal>
 			</Flex>
 			<Flex as="header" flexDirection="column" alignItems="center" gap={4} px={3}>
-				<Heading as="h3" fontSize={["xl", "xl", "xl", "2xl"]}>
+				<Heading as="h3" fontSize={["xl", "xl", "xl", "2xl"]} tabIndex="0">
 					{title}
 				</Heading>
-				<Text textAlign="center">{description}</Text>
+				<Text textAlign="center" tabIndex="0">
+					{description}
+				</Text>
 			</Flex>
 
 			<Grid as="footer" gridTemplateRows="1fr 40px" gap={5} px={3}>
 				{!!stack.length && (
 					<Flex justifyContent="center" flexWrap="wrap" gap={3} alignContent="flex-start">
 						{stack.map((tag) => (
-							<Tag key={tag} cursor="default">
+							<Tag key={tag} cursor="default" tabIndex="0">
 								{tag}
 							</Tag>
 						))}

@@ -1,8 +1,12 @@
 "use client";
 
+import { Suspense } from "react";
 import { ChakraProvider, Box, Container } from "@chakra-ui/react";
+import { ErrorBoundary } from "react-error-boundary";
 import { AppHeader, AppFooter } from "components";
 import { theme, navigationHeight, footerHeight } from "util/theme-config";
+import Loading from "./loading";
+import Error from "./error";
 
 export default function RootLayout({ children }) {
 	return (
@@ -14,7 +18,9 @@ export default function RootLayout({ children }) {
 
 					<Container maxW="container.xl">
 						<Box as="main" minHeight={`calc(100vh - ${navigationHeight}px - ${footerHeight}px)`}>
-							{children}
+							<ErrorBoundary FallbackComponent={Error}>
+								<Suspense fallback={<Loading />}>{children}</Suspense>
+							</ErrorBoundary>
 						</Box>
 						<AppFooter />
 					</Container>

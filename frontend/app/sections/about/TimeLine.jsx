@@ -89,7 +89,15 @@ export function TimeLine() {
 								flexDirection="column"
 								gap={3}
 							>
-								<Heading as="h3" fontSize="2xl" display="flex" gap={4} alignItems="center">
+								<Heading
+									as="h3"
+									fontSize="2xl"
+									display="flex"
+									gap={4}
+									alignItems="center"
+									tabIndex="0"
+									aria-label={"What do I do in " + item.year}
+								>
 									{`${item.year}`}
 									<svg
 										width="208"
@@ -119,7 +127,7 @@ export function TimeLine() {
 										</defs>
 									</svg>
 								</Heading>
-								<Text letterSpacing="0.02em" fontSize="sm">
+								<Text letterSpacing="0.02em" fontSize="sm" tabIndex="0">
 									{item.text}
 								</Text>
 							</Flex>

@@ -67,7 +67,7 @@ export function TechnologiesSection() {
 	return (
 		<Box as="section" id="tech" className="section">
 			<HeadingDivider title="Technologies" />
-			<Text fontSize="xl" pt={5} pb={10}>
+			<Text fontSize="xl" pt={5} pb={10} tabIndex="0">
 				I work with the following technologies and tools:
 			</Text>
 
@@ -76,14 +76,16 @@ export function TechnologiesSection() {
 					{Technologies.map((tech) => {
 						return (
 							<Box key={tech.category}>
-								<Heading as="h3" fontSize="2xl">
+								<Heading as="h3" fontSize="2xl" tabIndex="0">
 									{tech.category}
 								</Heading>
 								<Flex py={5} gap={4} flexWrap="wrap">
 									{tech.items.map((item) => (
 										<Fragment key={item.name}>
 											<Tooltip label={item.name} hasArrow arrowSize={8}>
-												<span>{item.icon}</span>
+												<span aria-label={item.name} tabIndex="0" role="img">
+													{item.icon}
+												</span>
 											</Tooltip>
 										</Fragment>
 									))}

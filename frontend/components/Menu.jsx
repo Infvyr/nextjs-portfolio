@@ -80,7 +80,7 @@ export function Menu({ onClick = () => {} }) {
 
 	backMenu = (
 		<Link href="/" title="Back to main page" tabIndex={-1}>
-			<Button variant="ghost" leftIcon={<BsArrowReturnLeft />}>
+			<Button variant="ghost" leftIcon={<BsArrowReturnLeft />} aria-label="Got to main page">
 				Back to main
 			</Button>
 		</Link>

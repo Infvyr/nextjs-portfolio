@@ -13,6 +13,7 @@ export function HeadingDivider({ title = "" }) {
 				pos="relative"
 				w="100%"
 				textTransform="uppercase"
+				tabIndex="0"
 				sx={{
 					"&:after": {
 						content: '""',

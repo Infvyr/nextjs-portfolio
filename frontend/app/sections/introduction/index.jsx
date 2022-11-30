@@ -61,14 +61,15 @@ export function WelcomeSection() {
 					size={["xl", "2xl", "2xl", "2xl", "3xl"]}
 					lineHeight="shorter !important"
 					mr={[null, null, null, "-25%"]}
+					tabIndex="0"
 				>
 					<Highlight query={["passionate", "Vasile"]} styles={{ color: highlightColor }}>
-						Hi, I'm Vasile a passionate front-end developer.
+						Hi, I&apos;m Vasile a passionate front-end developer.
 					</Highlight>
 				</Heading>
 
 				<Flex direction="column" overflow="hidden" pos="relative" mt={3}>
-					<Text fontSize={["lg", "x-large"]}>
+					<Text fontSize={["lg", "x-large"]} tabIndex="0">
 						I
 						<Text
 							as="span"
@@ -78,6 +79,7 @@ export function WelcomeSection() {
 							display="flex"
 							flexDirection="column"
 							transition="top .5s ease-in-out"
+							tabIndex="0"
 						>
 							{text.map((element) => (
 								<TextElement key={element} element={element} />
@@ -86,7 +88,7 @@ export function WelcomeSection() {
 					</Text>
 				</Flex>
 
-				<Text fontSize={["md", "lg"]} color={subTitleColor} mt={3} mb={10}>
+				<Text fontSize={["md", "lg"]} color={subTitleColor} mt={3} mb={10} tabIndex="0">
 					Stick around to see some of my work.
 				</Text>
 				<Button aria-label="Latest projects" p="0">
@@ -114,7 +116,7 @@ function TextElement({ element }) {
 	const restWords = element.split(" ").slice(1).join(" ");
 
 	return (
-		<span>
+		<span tabIndex="0">
 			{firstWord} {restWords}
 		</span>
 	);

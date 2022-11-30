@@ -11,7 +11,13 @@ export function Logo() {
 
 	return (
 		<Heading as="h3" size="md" fontSize={["15px", "25px"]}>
-			{pathname === "/projects" ? <Link href="/">{logoText}</Link> : logoText}
+			{pathname === "/projects" ? (
+				<Link href="/" aria-label="Go to main page" role="link">
+					{logoText}
+				</Link>
+			) : (
+				logoText
+			)}
 		</Heading>
 	);
 }
