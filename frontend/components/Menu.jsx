@@ -1,10 +1,12 @@
 "use client";
 
-import { Box, Link as ChakraLink, Button, useMediaQuery } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { LazyMotion, domAnimation, m } from "framer-motion";
+import { Box, Link as ChakraLink, Button, useMediaQuery } from "@chakra-ui/react";
 import { useScrollTo } from "hooks/useScrollTo";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import { initial, animate, exit, transition } from "util/motions";
 
 const MenuItems = [
 	{ id: "0", name: "Introduction", url: "#intro" },
@@ -49,7 +51,15 @@ export function Menu({ onClick = () => {} }) {
 	};
 
 	mainMenu = (
-		<Box as="nav" role="menu" flex={[1, 0]}>
+		<Box
+			as={m.nav}
+			initial={initial}
+			animate={animate}
+			exit={exit}
+			transition={transition}
+			flex={[1, 0]}
+			role="menu"
+		>
 			<Box
 				as="ul"
 				listStyleType="none"
@@ -79,11 +89,13 @@ export function Menu({ onClick = () => {} }) {
 	);
 
 	backMenu = (
-		<Link href="/" title="Back to main page" tabIndex={-1}>
-			<Button variant="ghost" leftIcon={<BsArrowReturnLeft />} aria-label="Got to main page">
-				Back to main
-			</Button>
-		</Link>
+		<m.div initial={initial} animate={animate} exit={exit} transition={transition}>
+			<Link href="/" title="Back to main page" tabIndex={-1}>
+				<Button variant="ghost" leftIcon={<BsArrowReturnLeft />} aria-label="Got to main page">
+					Back to main
+				</Button>
+			</Link>
+		</m.div>
 	);
 
 	content = pathname === "/projects" ? backMenu : mainMenu;
@@ -92,5 +104,5 @@ export function Menu({ onClick = () => {} }) {
 		return null;
 	}
 
-	return content;
+	return <LazyMotion features={domAnimation}>{content}</LazyMotion>;
 }

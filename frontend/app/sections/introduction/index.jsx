@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
+import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import {
 	Flex,
 	GridItem,
@@ -12,11 +15,12 @@ import {
 	useColorModeValue
 } from "@chakra-ui/react";
 import { WelcomeAnimation } from "./IntroAnimation";
-import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useScrollTo } from "hooks/useScrollTo";
 
 export function WelcomeSection() {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true });
+
 	const { scrollToEl } = useScrollTo();
 	const [isAnimationVisible] = useMediaQuery("(min-width: 768px)");
 	const subTitleColor = useColorModeValue("blackAlpha.600", "whiteAlpha.600");
@@ -46,78 +50,127 @@ export function WelcomeSection() {
 	}, [count]);
 
 	return (
-		<Grid
-			as="section"
-			id="intro"
-			className="section"
-			gap={5}
-			templateAreas={[`"content"`, `"content"`, `"content animation"`]}
-			gridTemplateColumns={["1fr", "1fr", "1fr 0.5fr", "1fr 0.7fr"]}
-			alignItems="center"
-		>
-			<GridItem area="content" py={[0, 0, 10]}>
-				<Heading
-					as="h1"
-					size={["xl", "2xl", "2xl", "2xl", "3xl"]}
-					lineHeight="shorter !important"
-					mr={[null, null, null, "-25%"]}
-					tabIndex="0"
-				>
-					<Highlight query={["passionate", "Vasile"]} styles={{ color: highlightColor }}>
-						Hi, I&apos;m Vasile a passionate front-end developer.
-					</Highlight>
-				</Heading>
-
-				<Flex direction="column" overflow="hidden" pos="relative" mt={3}>
-					<Text fontSize={["lg", "x-large"]} tabIndex="0">
-						I
-						<Text
-							as="span"
-							pos="absolute"
-							top={count === 0 ? "0%" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0"}
-							left={3}
-							display="flex"
-							flexDirection="column"
-							transition="top .5s ease-in-out"
-							tabIndex="0"
-						>
-							{text.map((element) => (
-								<TextElement key={element} element={element} />
-							))}
-						</Text>
-					</Text>
-				</Flex>
-
-				<Text fontSize={["md", "lg"]} color={subTitleColor} mt={3} mb={10} tabIndex="0">
-					Stick around to see some of my work.
-				</Text>
-				<Button aria-label="Latest projects" p="0">
-					<Link
-						href="#projects"
-						onClick={onClick}
-						style={{ display: "block", padding: "0 16px", lineHeight: "40px" }}
+		<LazyMotion features={domAnimation}>
+			<Grid
+				as="section"
+				id="intro"
+				className="section"
+				gap={5}
+				templateAreas={[`"content"`, `"content"`, `"content animation"`]}
+				gridTemplateColumns={["1fr", "1fr", "1fr 0.5fr", "1fr 0.7fr"]}
+				alignItems="center"
+			>
+				<GridItem area="content" py={[0, 0, 10]}>
+					<Heading
+						as="h1"
+						size={["xl", "2xl", "2xl", "2xl", "3xl"]}
+						lineHeight="shorter !important"
+						mr={[null, null, null, "-25%"]}
+						tabIndex="0"
+						ref={ref}
+						sx={{
+							transform: isInView ? "none" : "translateX(-200px)",
+							opacity: isInView ? 1 : 0,
+							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+						}}
 					>
-						See my latest projects
-					</Link>
-				</Button>
-			</GridItem>
+						<Highlight query={["passionate", "Vasile"]} styles={{ color: highlightColor }}>
+							Hi, I&apos;m Vasile a passionate front-end developer.
+						</Highlight>
+					</Heading>
 
-			{isAnimationVisible && (
-				<GridItem area="animation">
-					<WelcomeAnimation />
+					<Flex direction="column" overflow="hidden" pos="relative" mt={3}>
+						<Text
+							fontSize={["lg", "x-large"]}
+							tabIndex="0"
+							ref={ref}
+							sx={{
+								transform: isInView ? "none" : "translateX(-200px)",
+								opacity: isInView ? 1 : 0,
+								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+							}}
+						>
+							I
+							<Text
+								as="span"
+								pos="absolute"
+								top={count === 0 ? "0%" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0"}
+								left={3}
+								display="flex"
+								flexDirection="column"
+								transition="top .5s ease-in-out"
+								tabIndex="0"
+							>
+								{text.map((element) => (
+									<TextElement key={element} element={element} />
+								))}
+							</Text>
+						</Text>
+					</Flex>
+
+					<Text
+						fontSize={["md", "lg"]}
+						color={subTitleColor}
+						mt={3}
+						mb={10}
+						tabIndex="0"
+						ref={ref}
+						sx={{
+							transform: isInView ? "none" : "translateX(-200px)",
+							opacity: isInView ? 1 : 0,
+							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+						}}
+					>
+						Stick around to see some of my work.
+					</Text>
+					<Button
+						aria-label="Latest projects"
+						p="0"
+						ref={ref}
+						sx={{
+							transform: isInView ? "none" : "translateY(50px)",
+							opacity: isInView ? 1 : 0,
+							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
+						}}
+					>
+						<Link
+							href="#projects"
+							onClick={onClick}
+							style={{ display: "block", padding: "0 16px", lineHeight: "40px" }}
+						>
+							See my latest projects
+						</Link>
+					</Button>
 				</GridItem>
-			)}
-		</Grid>
+
+				{isAnimationVisible && (
+					<GridItem area="animation">
+						<WelcomeAnimation />
+					</GridItem>
+				)}
+			</Grid>
+		</LazyMotion>
 	);
 }
 
 function TextElement({ element }) {
 	const firstWord = <b>{element.split(" ").at(0)}</b>;
 	const restWords = element.split(" ").slice(1).join(" ");
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true });
 
 	return (
-		<span tabIndex="0">
+		<Text
+			as="span"
+			tabIndex="0"
+			ref={ref}
+			sx={{
+				transform: isInView ? "none" : "translateX(-200px)",
+				opacity: isInView ? 1 : 0,
+				transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+			}}
+		>
 			{firstWord} {restWords}
-		</span>
+		</Text>
 	);
 }

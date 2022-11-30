@@ -1,5 +1,7 @@
 "use client";
 
+import { Fragment, useRef } from "react";
+import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { Box, Heading, SimpleGrid, Flex, Text, Tooltip } from "@chakra-ui/react";
 import { HeadingDivider } from "components";
 import { AiFillHtml5, AiOutlineAntDesign, AiFillGithub, AiFillGitlab } from "react-icons/ai";
@@ -16,7 +18,6 @@ import HeadlessUiIcon from "public/assets/svg/headlessui.svg";
 import MuiIcon from "public/assets/svg/mui.svg";
 import ChakraIcon from "public/assets/svg/chakraui.svg";
 import StyledIcon from "public/assets/svg/styledcomponents.svg";
-import { Fragment } from "react";
 
 const Technologies = [
 	{
@@ -64,37 +65,67 @@ const Technologies = [
 ];
 
 export function TechnologiesSection() {
-	return (
-		<Box as="section" id="tech" className="section">
-			<HeadingDivider title="Technologies" />
-			<Text fontSize="xl" pt={5} pb={10} tabIndex="0">
-				I work with the following technologies and tools:
-			</Text>
+	const textRef = useRef(null);
+	const stackRef = useRef(null);
+	const isTextInView = useInView(textRef, { once: true });
+	const isStackInView = useInView(stackRef, { once: true });
 
-			{!!Technologies.length && (
-				<SimpleGrid columns={[1, null, 4]} spacing={[5, 10]}>
-					{Technologies.map((tech) => {
-						return (
-							<Box key={tech.category}>
-								<Heading as="h3" fontSize="2xl" tabIndex="0">
-									{tech.category}
-								</Heading>
-								<Flex py={5} gap={4} flexWrap="wrap">
-									{tech.items.map((item) => (
-										<Fragment key={item.name}>
-											<Tooltip label={item.name} hasArrow arrowSize={8}>
-												<span aria-label={item.name} tabIndex="0" role="img">
-													{item.icon}
-												</span>
-											</Tooltip>
-										</Fragment>
-									))}
-								</Flex>
-							</Box>
-						);
-					})}
-				</SimpleGrid>
-			)}
-		</Box>
+	return (
+		<LazyMotion features={domAnimation}>
+			<Box as="section" id="tech" className="section">
+				<HeadingDivider title="Technologies" />
+				<Text
+					fontSize="xl"
+					pt={5}
+					pb={10}
+					tabIndex="0"
+					ref={textRef}
+					style={{
+						transform: isTextInView ? "none" : "translateX(-200px)",
+						opacity: isTextInView ? 1 : 0,
+						transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+					}}
+				>
+					I work with the following technologies and tools:
+				</Text>
+
+				{!!Technologies.length && (
+					<SimpleGrid columns={[1, null, 4]} spacing={[5, 10]}>
+						{Technologies.map((tech, index) => {
+							return (
+								<Box
+									key={tech.category}
+									ref={stackRef}
+									sx={{
+										transform: isStackInView
+											? "none"
+											: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
+										opacity: isStackInView ? 1 : 0,
+										transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+											index === 0 ? 0 : 0.5 * index
+										}s`
+									}}
+								>
+									<Heading as="h3" fontSize="2xl" tabIndex="0">
+										{tech.category}
+									</Heading>
+									<Flex py={5} gap={4} flexWrap="wrap">
+										{tech.items.map((item) => (
+											<Fragment key={item.name}>
+												<Tooltip label={item.name} hasArrow arrowSize={8}>
+													<span aria-label={item.name} tabIndex="0" role="img">
+														{item.icon}
+													</span>
+												</Tooltip>
+											</Fragment>
+										))}
+									</Flex>
+								</Box>
+							);
+						})}
+					</SimpleGrid>
+				)}
+			</Box>
+		</LazyMotion>
 	);
 }
