@@ -1,26 +1,28 @@
-# Next JS v13 + Sanity
-
 ## Getting Started
 
-Install dependencies:
+First, install dependencies:
 ```bash
 npm install
 # or
-yarn install
+yarn
 ```
-
-Then, run the frontend development server (localhost:3000):
-
+Then run the development server:
 ```bash
-cd frontend && npm run dev
+npm run dev
 # or
-cd frontend && yarn dev
+yarn dev
 ```
-Run Sanity (localhost:3333)
 
-**`!!! Make sure to have installed Sanity globally and fill out the required schemas (check out the files from schemas folder)`**
+### Settings
 
-Then:
-```bash
-cd backend && sanity start
-```
+Create a file `.env.local` and put inside:
+1. NEXT_PUBLIC_SANITY_URL=""
+2. NEXT_PUBLIC_SANITY_LATEST_PROJECTS=""
+3. NEXT_PUBLIC_SANITY_ALL_PROJECTS=""
+4. NEXT_PUBLIC_SANITY_TOKEN=""
+
+Example:
+1. NEXT_PUBLIC_SANITY_URL="https://f2g1h82s.api.sanity.io/v2021-10-21/data/query/production"
+2. NEXT_PUBLIC_SANITY_LATEST_PROJECTS="?query=...", your query to get latest projects
+3. NEXT_PUBLIC_SANITY_ALL_PROJECTS="?query=...", your query to get all projects
+4. NEXT_PUBLIC_SANITY_TOKEN="", sanity token created in sanity studio under API section 
