@@ -1,8 +1,9 @@
 "use client";
 
 import { Suspense } from "react";
-import { ChakraProvider, Box, Container } from "@chakra-ui/react";
+import { ChakraProvider, Box } from "@chakra-ui/react";
 import { AppHeader, AppFooter } from "components";
+import { LayoutProvider } from "context/layout";
 import { theme, navigationHeight, footerHeight } from "util/theme-config";
 import Loading from "./loading";
 
@@ -14,12 +15,12 @@ export default function RootLayout({ children }) {
 				<ChakraProvider theme={theme}>
 					<AppHeader />
 
-					<Container maxW="container.xl">
+					<LayoutProvider>
 						<Box as="main" minHeight={`calc(100vh - ${navigationHeight}px - ${footerHeight}px)`}>
 							<Suspense fallback={<Loading />}>{children}</Suspense>
 						</Box>
 						<AppFooter />
-					</Container>
+					</LayoutProvider>
 				</ChakraProvider>
 			</body>
 		</html>

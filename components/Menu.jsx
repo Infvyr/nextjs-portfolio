@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { Box, Link as ChakraLink, Button, useMediaQuery } from "@chakra-ui/react";
-import { useScrollTo } from "hooks/useScrollTo";
+import { useScrollTo } from "hooks";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { initial, animate, exit, transition } from "util/motions";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import Link from "next/link";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import {
@@ -15,10 +15,12 @@ import {
 	useColorModeValue
 } from "@chakra-ui/react";
 import { WelcomeAnimation } from "./IntroAnimation";
-import { useScrollTo } from "hooks/useScrollTo";
+import { useScrollTo } from "hooks";
+import { LayoutContext } from "context/layout";
 
 export function WelcomeSection() {
 	const ref = useRef(null);
+	const { introRef, setIntroHeight } = useContext(LayoutContext);
 	const isInView = useInView(ref, { once: true });
 
 	const { scrollToEl } = useScrollTo();
@@ -49,6 +51,10 @@ export function WelcomeSection() {
 		return () => clearInterval(interval);
 	}, [count]);
 
+	useEffect(() => {
+		setIntroHeight(introRef.current?.offsetHeight);
+	}, [introRef, setIntroHeight]);
+
 	return (
 		<LazyMotion features={domAnimation}>
 			<Grid
@@ -59,6 +65,7 @@ export function WelcomeSection() {
 				templateAreas={[`"content"`, `"content"`, `"content animation"`]}
 				gridTemplateColumns={["1fr", "1fr", "1fr 0.5fr", "1fr 0.7fr"]}
 				alignItems="center"
+				ref={introRef}
 			>
 				<GridItem area="content" py={[0, 0, 10]}>
 					<Heading
@@ -94,7 +101,7 @@ export function WelcomeSection() {
 							<Text
 								as="span"
 								pos="absolute"
-								top={count === 0 ? "0%" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0"}
+								top={count === 0 ? "0" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0"}
 								left={3}
 								display="flex"
 								flexDirection="column"

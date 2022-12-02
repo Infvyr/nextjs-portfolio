@@ -9,3 +9,4 @@ export { ColorMode } from "./ColorMode";
 export { MobileMenu } from "./MobileMenu";
 export { HeadingDivider } from "./HeadingDivider";
 export { Seo } from "./Seo";
+export { ScrollTop } from "./ScrollTop";
