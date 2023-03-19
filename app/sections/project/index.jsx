@@ -18,7 +18,7 @@ export function ProjectsSection() {
 	const btnRef = useRef(null);
 	const isBtnInView = useInView(btnRef, { once: true });
 
-	const { data, error } = useSWR(url, fetcher, { suspense: true });
+	const { data, error } = useSWR(url, fetcher);
 	const projects = data?.result;
 
 	if (error && !data) {
