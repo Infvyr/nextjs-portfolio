@@ -10,26 +10,24 @@
 		"format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
 	},
 	"dependencies": {
-		"@chakra-ui/react": "^2.4.4",
-		"@emotion/react": "^11.10.5",
-		"@emotion/styled": "^11.10.5",
-		"@next/font": "^13.1.1",
-		"framer-motion": "^8.0.2",
-		"next": "^13.1.1",
-		"next-seo": "^5.15.0",
+		"@chakra-ui/react": "^2.5.2",
+		"@emotion/react": "^11.10.6",
+		"@emotion/styled": "^11.10.6",
+		"framer-motion": "^8.5.5",
+		"next": "^13.2.4",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-error-boundary": "^3.1.4",
-		"react-icons": "^4.7.1",
+		"react-icons": "^4.8.0",
 		"react-image-gallery": "^1.2.11",
-		"swr": "^2.0.0"
+		"swr": "^2.1.0"
 	},
 	"devDependencies": {
-		"@next/eslint-plugin-next": "^13.1.1",
+		"@next/eslint-plugin-next": "^13.2.4",
 		"@svgr/webpack": "^6.5.1",
-		"eslint": "^8.30.0",
-		"eslint-config-next": "^13.1.1",
-		"eslint-config-prettier": "^8.5.0",
-		"prettier": "^2.8.1"
+		"eslint": "^8.36.0",
+		"eslint-config-next": "^13.2.4",
+		"eslint-config-prettier": "^8.7.0",
+		"prettier": "^2.8.4"
 	}
 }

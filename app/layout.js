@@ -7,10 +7,11 @@ import { LayoutProvider } from "context/layout";
 import { theme, navigationHeight, footerHeight } from "util/theme-config";
 import Loading from "./loading";
 
+// export const metadata = { ...AppMetadata };
+
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<head />
 			<body>
 				<ChakraProvider theme={theme}>
 					<AppHeader />
