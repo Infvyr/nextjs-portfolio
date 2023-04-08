@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import { List, ListItem, Heading, Flex, Text, useColorMode } from "@chakra-ui/react";
 
 const TimeLineData = [
 	{ year: 2017, text: "Start my journey as a WordPress developer" },
@@ -12,7 +11,7 @@ const TimeLineData = [
 ];
 
 export function TimeLine() {
-	const { colorMode } = useColorMode();
+	const colorMode = "dark";
 	const [activeItem, setActiveItem] = useState(0);
 	const carouselRef = useRef();
 	const animRef = useRef(null);
@@ -59,15 +58,15 @@ export function TimeLine() {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<List
+			<ul
 				ref={carouselRef}
 				onScroll={handleScroll}
-				display="flex"
-				justifyContent="space-between"
-				gap={5}
-				overflowX="auto"
-				scrollSnapType="x mandatory"
-				cursor="all-scroll"
+				// display="flex"
+				// justifyContent="space-between"
+				// gap={5}
+				// overflowX="auto"
+				// scrollSnapType="x mandatory"
+				// cursor="all-scroll"
 				sx={{
 					"&": {
 						scrollbarWidth: "none"
@@ -80,10 +79,10 @@ export function TimeLine() {
 				<>
 					{TimeLineData.map((item, index) => {
 						return (
-							<ListItem
+							<ul
 								key={index}
-								w={["calc((100% / 2) - 30px)", "calc(100% / 4)", "calc(100% / 6)"]}
-								scrollSnapAlign="start"
+								// w={["calc((100% / 2) - 30px)", "calc(100% / 4)", "calc(100% / 6)"]}
+								// scrollSnapAlign="start"
 								ref={animRef}
 								sx={{
 									transform: isInView
@@ -95,23 +94,15 @@ export function TimeLine() {
 									}s`
 								}}
 							>
-								<Flex
-									index={index}
+								<div
+									// index={index}
 									id={`carousel__item-${index}`}
-									active={activeItem}
+									// active={activeItem}
 									onClick={(e) => handleClick(e, index)}
-									flexDirection="column"
-									gap={3}
+									// flexDirection="column"
+									// gap={3}
 								>
-									<Heading
-										as="h3"
-										fontSize="2xl"
-										display="flex"
-										gap={4}
-										alignItems="center"
-										tabIndex="0"
-										aria-label={"What do I do in " + item.year}
-									>
+									<h3 tabIndex="0" aria-label={"What do I do in " + item.year}>
 										{`${item.year}`}
 										<svg
 											width="208"
@@ -140,16 +131,16 @@ export function TimeLine() {
 												</linearGradient>
 											</defs>
 										</svg>
-									</Heading>
-									<Text letterSpacing="0.02em" fontSize="sm" tabIndex="0">
+									</h3>
+									<p letterSpacing="0.02em" tabIndex="0">
 										{item.text}
-									</Text>
-								</Flex>
-							</ListItem>
+									</p>
+								</div>
+							</ul>
 						);
 					})}
 				</>
-			</List>
+			</ul>
 		</LazyMotion>
 	);
 }

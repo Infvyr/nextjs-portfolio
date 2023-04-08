@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useRef, useState } from "react";
-import { Container } from "@chakra-ui/react";
 import { useInView } from "framer-motion";
 
 export const LayoutContext = createContext(null);
@@ -16,7 +15,7 @@ export function LayoutProvider({ children }) {
 		<LayoutContext.Provider
 			value={{ introRef, introHeight, setIntroHeight, footerRef, isFooterInView }}
 		>
-			<Container maxW="container.xl">{children}</Container>
+			<div>{children}</div>
 		</LayoutContext.Provider>
 	);
 }

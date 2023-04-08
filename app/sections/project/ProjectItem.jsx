@@ -1,22 +1,5 @@
 import { Suspense, useRef } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import {
-	Button,
-	Flex,
-	Grid,
-	Heading,
-	HStack,
-	Modal,
-	ModalBody,
-	ModalCloseButton,
-	ModalContent,
-	ModalHeader,
-	ModalOverlay,
-	Tag,
-	Text,
-	useDisclosure,
-	useColorModeValue
-} from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import ImageGallery from "react-image-gallery";
@@ -57,7 +40,6 @@ const sxFigure = {
 export function ProjectItem(props) {
 	const { project, index } = props;
 	const { description, images, liveUrl, poster, repoUrl, stack, title } = project;
-	const { isOpen, onOpen, onClose } = useDisclosure();
 	const finalRef = useRef(null);
 	const cardRef = useRef(null);
 	const isCardInView = useInView(cardRef, { once: true });
@@ -67,63 +49,40 @@ export function ProjectItem(props) {
 		loading: "lazy"
 	}));
 
-	const cardBgColor = useColorModeValue("whiteAlpha.800", "whiteAlpha.50");
-
 	const onKeyDown = (event) => {
 		if (event.code === "Enter" && !event.shiftKey) {
 			event.preventDefault();
 
-			onOpen();
+			// onOpen();
 		}
 	};
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<Grid
-				templateRows={[
-					"225px 1fr",
-					"225px 1fr",
-					"140px 1fr minmax(min(50px, 100px), 200px)",
-					"225px 1fr minmax(clamp(50px, 100px, 160px), 160px)"
-				]}
-				gap={5}
-				pb={5}
-				bgColor={cardBgColor}
-				borderRadius="lg"
+			<div
+				// templateRows={[
+				// 	"225px 1fr",
+				// 	"225px 1fr",
+				// 	"140px 1fr minmax(min(50px, 100px), 200px)",
+				// 	"225px 1fr minmax(clamp(50px, 100px, 160px), 160px)"
+				// ]}
 				ref={cardRef}
-				sx={{
-					transform: isCardInView
-						? "none"
-						: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
-					opacity: isCardInView ? 1 : 0,
-					transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${index === 0 ? 0 : 0.5 * index}s`
-				}}
+				// sx={{
+				// 	transform: isCardInView
+				// 		? "none"
+				// 		: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
+				// 	opacity: isCardInView ? 1 : 0,
+				// 	transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${index === 0 ? 0 : 0.5 * index}s`
+				// }}
 			>
-				<Flex
-					as="figure"
-					justifyContent="center"
-					pos="relative"
-					onClick={onOpen}
+				<figure
+					// onClick={onOpen}
 					onKeyDown={onKeyDown}
 					sx={sxFigure}
 				>
-					<Flex
-						className="zoom"
-						p={1}
-						pos="absolute"
-						top="50%"
-						left="50%"
-						w={10}
-						h={10}
-						alignItems="center"
-						justifyContent="center"
-						borderRadius="50%"
-						visibility="hidden"
-						opacity="0.25"
-						transform="translate(-50%,-50%) scale(0.2)"
-					>
+					<div className="zoom">
 						<MdZoomOutMap size={30} fill="white" />
-					</Flex>
+					</div>
 					<Image
 						src={poster}
 						width={250}
@@ -135,12 +94,12 @@ export function ProjectItem(props) {
 						tabIndex="0"
 						style={{ width: "100%", objectFit: "cover" }}
 					/>
-					<Modal isOpen={isOpen} onClose={onClose} finalFocusRef={finalRef} isCentered>
-						<ModalOverlay bg="none" backdropFilter="auto" backdropBlur="5px" />
-						<ModalContent maxW="80vw" minH="calc(100% - 130px)" bg="none">
-							<ModalHeader>{title} Gallery</ModalHeader>
-							<ModalCloseButton />
-							<ModalBody>
+					<div isOpen="isOpen" onClose="onClose" finalFocusRef={finalRef}>
+						{/*<div bg="none" backdropFilter="auto" backdropBlur="5px" />*/}
+						<div>
+							<header>{title} Gallery</header>
+							{/*<ModalCloseButton />*/}
+							<div>
 								<Suspense fallback={<Loader width="100%" />}>
 									<ImageGallery
 										items={galleryImages}
@@ -150,30 +109,26 @@ export function ProjectItem(props) {
 										lazyload
 									/>
 								</Suspense>
-							</ModalBody>
-						</ModalContent>
-					</Modal>
-				</Flex>
-				<Flex as="header" flexDirection="column" alignItems="center" gap={4} px={3}>
-					<Heading as="h3" fontSize={["xl", "xl", "xl", "2xl"]} tabIndex="0">
-						{title}
-					</Heading>
-					<Text textAlign="center" tabIndex="0">
-						{description}
-					</Text>
-				</Flex>
+							</div>
+						</div>
+					</div>
+				</figure>
+				<header>
+					<h3 tabIndex="0">{title}</h3>
+					<p tabIndex="0">{description}</p>
+				</header>
 
-				<Grid as="footer" gridTemplateRows="1fr 40px" gap={5} px={3}>
+				<footer>
 					{!!stack.length && (
-						<Flex justifyContent="center" flexWrap="wrap" gap={3} alignContent="flex-start">
+						<div>
 							{stack.map((tag) => (
-								<Tag key={tag} cursor="default" tabIndex="0">
+								<div key={tag} tabIndex="0">
 									{tag}
-								</Tag>
+								</div>
 							))}
-						</Flex>
+						</div>
 					)}
-					<HStack py={[null, null, null, null, 5]} spacing={3} justify="center">
+					<div>
 						{repoUrl && (
 							<Link
 								href={repoUrl}
@@ -184,35 +139,23 @@ export function ProjectItem(props) {
 									alignItems: "center"
 								}}
 							>
-								<Button variant="ghost" aria-label="Go to repository">
+								<button aria-label="Go to repository">
 									<VscSourceControl />
-									<Text as="span" ml={2}>
-										Source
-									</Text>
-								</Button>
+									<span>Source</span>
+								</button>
 							</Link>
 						)}
 						{liveUrl && (
-							<Link
-								href={liveUrl}
-								target="_blank"
-								tabIndex={-1}
-								style={{
-									display: "flex",
-									alignItems: "center"
-								}}
-							>
-								<Button variant="ghost" aria-label="Go live">
+							<Link href={liveUrl} target="_blank" tabIndex={-1}>
+								<button aria-label="Go live">
 									<FiExternalLink />
-									<Text as="span" ml={2}>
-										Demo
-									</Text>
-								</Button>
+									<span>Demo</span>
+								</button>
 							</Link>
 						)}
-					</HStack>
-				</Grid>
-			</Grid>
+					</div>
+				</footer>
+			</div>
 		</LazyMotion>
 	);
 }

@@ -2,10 +2,9 @@
 
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { Box, useColorMode } from "@chakra-ui/react";
 
 export function WelcomeAnimation() {
-	const { colorMode } = useColorMode();
+	const { colorMode } = "light";
 
 	let content;
 	content = colorMode === "dark" ? <DarkAnimation /> : <LightAnimation />;
@@ -18,7 +17,7 @@ function DarkAnimation() {
 	const isInView = useInView(ref, { once: true });
 
 	return (
-		<Box
+		<div
 			ref={ref}
 			sx={{
 				transform: isInView ? "none" : "translateX(100px)",
@@ -333,7 +332,7 @@ function DarkAnimation() {
 					</linearGradient>
 				</defs>
 			</svg>
-		</Box>
+		</div>
 	);
 }
 
@@ -342,7 +341,7 @@ function LightAnimation() {
 	const isInView = useInView(ref, { once: true });
 
 	return (
-		<Box
+		<div
 			ref={ref}
 			sx={{
 				transform: isInView ? "none" : "translateX(100px)",
@@ -657,6 +656,6 @@ function LightAnimation() {
 					</linearGradient>
 				</defs>
 			</svg>
-		</Box>
+		</div>
 	);
 }

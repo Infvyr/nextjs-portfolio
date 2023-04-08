@@ -3,17 +3,6 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import Link from "next/link";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import {
-	Flex,
-	GridItem,
-	Button,
-	Heading,
-	Highlight,
-	Grid,
-	Text,
-	useMediaQuery,
-	useColorModeValue
-} from "@chakra-ui/react";
 import { WelcomeAnimation } from "./IntroAnimation";
 import { useScrollTo } from "hooks";
 import { LayoutContext } from "context/layout";
@@ -24,9 +13,6 @@ export function WelcomeSection() {
 	const isInView = useInView(ref, { once: true });
 
 	const { scrollToEl } = useScrollTo();
-	const [isAnimationVisible] = useMediaQuery("(min-width: 768px)");
-	const subTitleColor = useColorModeValue("blackAlpha.600", "whiteAlpha.600");
-	const highlightColor = useColorModeValue("blue.500", "blue.500");
 
 	let [count, setCount] = useState(0);
 	const [text] = useState([
@@ -57,22 +43,14 @@ export function WelcomeSection() {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<Grid
-				as="section"
+			<section
 				id="intro"
 				className="section"
-				gap={5}
-				templateAreas={[`"content"`, `"content"`, `"content animation"`]}
-				gridTemplateColumns={["1fr", "1fr", "1fr 0.5fr", "1fr 0.7fr"]}
-				alignItems="center"
+				// gridTemplateColumns={["1fr", "1fr", "1fr 0.5fr", "1fr 0.7fr"]}
 				ref={introRef}
 			>
-				<GridItem area="content" py={[0, 0, 10]}>
-					<Heading
-						as="h1"
-						size={["xl", "2xl", "2xl", "2xl", "3xl"]}
-						lineHeight="shorter !important"
-						mr={[null, null, null, "-25%"]}
+				<div>
+					<h1
 						tabIndex="0"
 						ref={ref}
 						sx={{
@@ -81,14 +59,13 @@ export function WelcomeSection() {
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 						}}
 					>
-						<Highlight query={["passionate", "Vasile"]} styles={{ color: highlightColor }}>
+						<p query={["passionate", "Vasile"]} styles={{ color: "blue" }}>
 							Hi, I&apos;m Vasile a passionate front-end developer.
-						</Highlight>
-					</Heading>
+						</p>
+					</h1>
 
-					<Flex direction="column" overflow="hidden" pos="relative" mt={3}>
-						<Text
-							fontSize={["lg", "x-large"]}
+					<div>
+						<p
 							tabIndex="0"
 							ref={ref}
 							sx={{
@@ -98,28 +75,24 @@ export function WelcomeSection() {
 							}}
 						>
 							I
-							<Text
-								as="span"
-								pos="absolute"
-								top={count === 0 ? "0" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0"}
-								left={3}
-								display="flex"
-								flexDirection="column"
-								transition="top .5s ease-in-out"
+							<span
+								// as="span"
+								// pos="absolute"
+								// top={count === 0 ? "0" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0"}
+								// left={3}
+								// display="flex"
+								// flexDirection="column"
+								// transition="top .5s ease-in-out"
 								tabIndex="0"
 							>
 								{text.map((element) => (
 									<TextElement key={element} element={element} />
 								))}
-							</Text>
-						</Text>
-					</Flex>
+							</span>
+						</p>
+					</div>
 
-					<Text
-						fontSize={["md", "lg"]}
-						color={subTitleColor}
-						mt={3}
-						mb={10}
+					<p
 						tabIndex="0"
 						ref={ref}
 						sx={{
@@ -129,10 +102,9 @@ export function WelcomeSection() {
 						}}
 					>
 						Stick around to see some of my work.
-					</Text>
-					<Button
+					</p>
+					<button
 						aria-label="Latest projects"
-						p="0"
 						ref={ref}
 						sx={{
 							transform: isInView ? "none" : "translateY(50px)",
@@ -147,15 +119,15 @@ export function WelcomeSection() {
 						>
 							See my latest projects
 						</Link>
-					</Button>
-				</GridItem>
+					</button>
+				</div>
 
-				{isAnimationVisible && (
-					<GridItem area="animation">
-						<WelcomeAnimation />
-					</GridItem>
-				)}
-			</Grid>
+				{/*{isAnimationVisible && (*/}
+				<div>
+					<WelcomeAnimation />
+				</div>
+				{/*)}*/}
+			</section>
 		</LazyMotion>
 	);
 }
@@ -167,8 +139,7 @@ function TextElement({ element }) {
 	const isInView = useInView(ref, { once: true });
 
 	return (
-		<Text
-			as="span"
+		<span
 			tabIndex="0"
 			ref={ref}
 			sx={{
@@ -178,6 +149,6 @@ function TextElement({ element }) {
 			}}
 		>
 			{firstWord} {restWords}
-		</Text>
+		</span>
 	);
 }

@@ -1,8 +1,19 @@
 {
 	"compilerOptions": {
 		"baseUrl": ".",
-		"module": "commonjs",
-		"target": "es6"
+		"target": "es6",
+		"jsx": "react-jsx",
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true
 	},
 	"include": ["app", "public", "styles", "pages"],
 	"paths": {},

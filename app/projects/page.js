@@ -3,7 +3,6 @@
 import { useState } from "react";
 import useSWR from "swr";
 import { ErrorBoundary } from "react-error-boundary";
-import { Box, SimpleGrid } from "@chakra-ui/react";
 import { HeadingDivider } from "components";
 import { ProjectItem } from "app/sections/project/ProjectItem";
 import { Filter } from "./components/Filter";
@@ -23,20 +22,20 @@ export default function Page() {
 	const onClick = (catName) => setCategory(catName);
 
 	return (
-		<Box as="section" id="projects" className="section">
+		<div id="projects" className="section">
 			<HeadingDivider title="Relevant projects" />
 
 			<Filter onClick={onClick} />
 
 			<ErrorBoundary FallbackComponent={Error}>
-				<SimpleGrid spacingY={10} spacingX={6} columns={[1, 1, 3]}>
+				<div>
 					{filteredProjects
 						?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 						?.map((project) => (
 							<ProjectItem key={project._id} project={project} />
 						))}
-				</SimpleGrid>
+				</div>
 			</ErrorBoundary>
-		</Box>
+		</div>
 	);
 }

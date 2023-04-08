@@ -5,7 +5,6 @@ import { useInView } from "framer-motion";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
-import { Box, Button, Center, SimpleGrid } from "@chakra-ui/react";
 import { HeadingDivider } from "components";
 import { ProjectItem } from "./ProjectItem";
 import { fetcher } from "util/fetcher";
@@ -26,21 +25,21 @@ export function ProjectsSection() {
 	}
 
 	return (
-		<Box as="section" id="projects" className="section">
+		<section id="projects" className="section">
 			<HeadingDivider title="Latest projects" />
-			<Box py={8} />
+			<div />
 
 			<Suspense fallback={<DynamicLoader width="100%" />}>
-				<SimpleGrid spacingY={10} spacingX={6} columns={[1, 1, 3]}>
+				<div>
 					{projects
 						?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 						?.map((project, index) => (
 							<ProjectItem key={project._id} project={project} index={index} />
 						))}
-				</SimpleGrid>
+				</div>
 			</Suspense>
 
-			<Center mt={[8, 8, 16]}>
+			<div>
 				<Link
 					href="/projects"
 					tabIndex={-1}
@@ -52,9 +51,9 @@ export function ProjectsSection() {
 						transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 					}}
 				>
-					<Button aria-label="See more projects">More projects</Button>
+					<button aria-label="See more projects">More projects</button>
 				</Link>
-			</Center>
-		</Box>
+			</div>
+		</section>
 	);
 }

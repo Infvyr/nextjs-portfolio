@@ -1,7 +1,6 @@
 "use client";
 
 import { LazyMotion, domAnimation, m } from "framer-motion";
-import { Box, Link } from "@chakra-ui/react";
 import { BsLinkedin, BsGithub, BsFillEnvelopeOpenFill } from "react-icons/bs";
 import { initial, animate, exit, transition } from "util/motions";
 
@@ -33,7 +32,7 @@ export function ConnectMedia() {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<Box
+			<div
 				as={m.nav}
 				role="menu"
 				initial={initial}
@@ -41,28 +40,16 @@ export function ConnectMedia() {
 				exit={exit}
 				transition={transition}
 			>
-				<Box as="ul" listStyleType="none" display="flex" align="center" gap={5}>
+				<div>
 					{MediaIcons.map((item) => (
-						<Box as="li" key={item.id}>
-							<Link
-								href={item.url}
-								target="_blank"
-								title={item.title}
-								aria-label={item.title}
-								fontSize={["15px", "20px"]}
-								textDecoration="none !important"
-								pos="relative"
-								_focusVisible={{
-									display: "block",
-									boxShadow: "outline"
-								}}
-							>
+						<div key={item.id}>
+							<a href={item.url} target="_blank" title={item.title} aria-label={item.title}>
 								{item.icon}
-							</Link>
-						</Box>
+							</a>
+						</div>
 					))}
-				</Box>
-			</Box>
+				</div>
+			</div>
 		</LazyMotion>
 	);
 }

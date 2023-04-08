@@ -2,7 +2,6 @@
 
 import { Fragment, useRef } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import { Box, Heading, SimpleGrid, Flex, Text, Tooltip } from "@chakra-ui/react";
 import { HeadingDivider } from "components";
 import { AiFillHtml5, AiOutlineAntDesign, AiFillGithub, AiFillGitlab } from "react-icons/ai";
 import { DiCss3, DiVisualstudio } from "react-icons/di";
@@ -72,60 +71,55 @@ export function TechnologiesSection() {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<Box as="section" id="tech" className="section">
+			<section id="tech" className="section">
 				<HeadingDivider title="Technologies" />
-				<Text
-					fontSize="xl"
-					pt={5}
-					pb={10}
+				<p
 					tabIndex="0"
 					ref={textRef}
-					style={{
-						transform: isTextInView ? "none" : "translateX(-200px)",
-						opacity: isTextInView ? 1 : 0,
-						transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-					}}
+					// style={{
+					// 	transform: isTextInView ? "none" : "translateX(-200px)",
+					// 	opacity: isTextInView ? 1 : 0,
+					// 	transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+					// }}
 				>
 					I work with the following technologies and tools:
-				</Text>
+				</p>
 
 				{!!Technologies.length && (
-					<SimpleGrid columns={[1, null, 4]} spacing={[5, 10]}>
+					<div>
 						{Technologies.map((tech, index) => {
 							return (
-								<Box
+								<div
 									key={tech.category}
 									ref={stackRef}
-									sx={{
-										transform: isStackInView
-											? "none"
-											: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
-										opacity: isStackInView ? 1 : 0,
-										transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-											index === 0 ? 0 : 0.5 * index
-										}s`
-									}}
+									// sx={{
+									// 	transform: isStackInView
+									// 		? "none"
+									// 		: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
+									// 	opacity: isStackInView ? 1 : 0,
+									// 	transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+									// 		index === 0 ? 0 : 0.5 * index
+									// 	}`
+									// }}
 								>
-									<Heading as="h3" fontSize="2xl" tabIndex="0">
-										{tech.category}
-									</Heading>
-									<Flex py={5} gap={4} flexWrap="wrap">
+									<h3 tabIndex="0">{tech.category}</h3>
+									<div>
 										{tech.items.map((item) => (
 											<Fragment key={item.name}>
-												<Tooltip label={item.name} hasArrow arrowSize={8}>
+												<div>
 													<span aria-label={item.name} tabIndex="0" role="img">
 														{item.icon}
 													</span>
-												</Tooltip>
+												</div>
 											</Fragment>
 										))}
-									</Flex>
-								</Box>
+									</div>
+								</div>
 							);
 						})}
-					</SimpleGrid>
+					</div>
 				)}
-			</Box>
+			</section>
 		</LazyMotion>
 	);
 }
