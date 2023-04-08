@@ -5,6 +5,7 @@ import { AppHeader, AppFooter } from "components";
 import { LayoutProvider } from "context/layout";
 import { navigationHeight, footerHeight } from "util/theme-config";
 import Loading from "./loading";
+import "styles/globals.css";
 
 // export const metadata = { ...AppMetadata };
 
