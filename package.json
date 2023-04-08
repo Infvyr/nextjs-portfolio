@@ -10,6 +10,7 @@
 		"format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
 	},
 	"dependencies": {
+		"@headlessui/react": "^1.7.13",
 		"framer-motion": "^8.5.5",
 		"next": "^13.3.0",
 		"react": "^18.2.0",
