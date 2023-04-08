@@ -5,60 +5,56 @@ import { usePathname } from "next/navigation";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useScrollTo } from "hooks";
 import { BsArrowReturnLeft } from "react-icons/bs";
-import { initial, animate, exit, transition } from "util/motions";
-
-const MenuItems = [
-	{ id: "0", name: "Introduction", url: "#intro" },
-	{ id: "1", name: "About", url: "#about" },
-	{ id: "2", name: "Projects", url: "#projects" },
-	{ id: "3", name: "Tech", url: "#tech" }
-];
+import { initial, animate, exit, transition } from "utils/motions";
+import { menu, SiteRoutes, SiteStrings } from "../constants";
 
 export function Menu({ onClick = () => {} }) {
 	let content, mainMenu, backMenu;
 	const pathname = usePathname();
 	const { scrollToEl } = useScrollTo();
 
-	const sortCallback = (a, b) => a.id - b.id;
+	const sortAscending = (a, b) => a.id - b.id;
 
 	const handleOnClick = (e) => {
 		scrollToEl(e);
-
-		window.setTimeout(() => {
-			onClick();
-		}, 350);
+		window.setTimeout(() => onClick(), 350);
 	};
 
 	mainMenu = (
-		<m.div initial={initial} animate={animate} exit={exit} transition={transition} role="menu">
-			<div>
-				{MenuItems.sort(sortCallback).map((menuItem) => (
-					<div key={menuItem.id}>
-						<a href={menuItem.url} title={menuItem.name} onClick={handleOnClick}>
+		<m.nav initial={initial} animate={animate} exit={exit} transition={transition} role="menu">
+			<ul className="flex justify-center gap-5 flex-col md:flex-row items-start md:items-center">
+				{menu.sort(sortAscending).map((menuItem) => (
+					<li key={menuItem.id}>
+						<a
+							href={menuItem.url}
+							title={menuItem.name}
+							onClick={handleOnClick}
+							className="relative text-xl hover:no-underline after:absolute after:left-0 after:-bottom-[3px] after:h-[2px] after:w-0 after:bg-current after:transition-width after:duration-300 after:ease-in-out hover:after:w-full"
+						>
 							{menuItem.name}
 						</a>
-					</div>
+					</li>
 				))}
-			</div>
-		</m.div>
+			</ul>
+		</m.nav>
 	);
 
 	backMenu = (
 		<m.div initial={initial} animate={animate} exit={exit} transition={transition}>
-			<Link href="/" title="Back to main page" tabIndex={-1}>
-				<button aria-label="Go to main page">
+			<Link href="/" title={SiteStrings.backToMainPageTitle} tabIndex={-1}>
+				<button aria-label={SiteStrings.goToMainPageTitle}>
 					<span>
 						<BsArrowReturnLeft />
 					</span>
-					Back to main
+					{SiteStrings.backToMainText}
 				</button>
 			</Link>
 		</m.div>
 	);
 
-	content = pathname === "/projects" ? backMenu : mainMenu;
+	content = pathname === SiteRoutes.projects ? backMenu : mainMenu;
 
-	if (MenuItems.length === 0) {
+	if (menu.length === 0) {
 		return null;
 	}
 

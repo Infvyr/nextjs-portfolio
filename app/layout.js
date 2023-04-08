@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import { AppHeader, AppFooter } from "components";
 import { LayoutProvider } from "context/layout";
-import { navigationHeight, footerHeight } from "util/theme-config";
+import { navigationHeight, footerHeight } from "utils/theme-config";
 import Loading from "./loading";
 import "styles/globals.css";
 

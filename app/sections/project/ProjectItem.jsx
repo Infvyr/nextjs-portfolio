@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ImageGallery from "react-image-gallery";
 import { Loader } from "components";
-import { blurDataUrl } from "util/theme-config";
+import { blurDataUrl } from "utils/theme-config";
 import { MdZoomOutMap } from "react-icons/md";
 import { VscSourceControl } from "react-icons/vsc";
 import { FiExternalLink } from "react-icons/fi";
@@ -59,27 +59,8 @@ export function ProjectItem(props) {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<div
-				// templateRows={[
-				// 	"225px 1fr",
-				// 	"225px 1fr",
-				// 	"140px 1fr minmax(min(50px, 100px), 200px)",
-				// 	"225px 1fr minmax(clamp(50px, 100px, 160px), 160px)"
-				// ]}
-				ref={cardRef}
-				// sx={{
-				// 	transform: isCardInView
-				// 		? "none"
-				// 		: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
-				// 	opacity: isCardInView ? 1 : 0,
-				// 	transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${index === 0 ? 0 : 0.5 * index}s`
-				// }}
-			>
-				<figure
-					// onClick={onOpen}
-					onKeyDown={onKeyDown}
-					sx={sxFigure}
-				>
+			<div ref={cardRef}>
+				<figure onKeyDown={onKeyDown}>
 					<div className="zoom">
 						<MdZoomOutMap size={30} fill="white" />
 					</div>
@@ -94,11 +75,9 @@ export function ProjectItem(props) {
 						tabIndex="0"
 						style={{ width: "100%", objectFit: "cover" }}
 					/>
-					<div isOpen="isOpen" onClose="onClose" finalFocusRef={finalRef}>
-						{/*<div bg="none" backdropFilter="auto" backdropBlur="5px" />*/}
+					<div>
 						<div>
 							<header>{title} Gallery</header>
-							{/*<ModalCloseButton />*/}
 							<div>
 								<Suspense fallback={<Loader width="100%" />}>
 									<ImageGallery

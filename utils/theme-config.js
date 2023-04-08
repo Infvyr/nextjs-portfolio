@@ -1,4 +1,5 @@
 const navigationHeight = 80;
+const menuMobileHeight = "68px";
 const footerHeight = 110;
 
 // const colors = {
@@ -50,4 +51,4 @@ const footerHeight = 110;
 const blurDataUrl =
 	"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN8WQ8AAlcBas53/MIAAAAASUVORK5CYII=";
 
-export { navigationHeight, footerHeight, blurDataUrl };
+export { navigationHeight, menuMobileHeight, footerHeight, blurDataUrl };

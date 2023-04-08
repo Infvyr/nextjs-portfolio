@@ -9,6 +9,7 @@ export function ColorMode() {
 		<button
 			onClick={() => {}}
 			title={`Switch color mode to ${colorMode === "light" ? "dark" : "light"}`}
+			className="hidden"
 		>
 			<div>
 				<BsMoon />

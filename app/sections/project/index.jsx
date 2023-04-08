@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { HeadingDivider } from "components";
 import { ProjectItem } from "./ProjectItem";
-import { fetcher } from "util/fetcher";
+import { fetcher } from "utils/fetcher";
 
 const DynamicLoader = dynamic(() => import("components/Loader").then((mod) => mod.Loader));
 

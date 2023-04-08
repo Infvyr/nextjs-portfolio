@@ -6,7 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { HeadingDivider } from "components";
 import { ProjectItem } from "app/sections/project/ProjectItem";
 import { Filter } from "./components/Filter";
-import { fetcher } from "util/fetcher";
+import { fetcher } from "utils/fetcher";
 import Error from "../error";
 
 const url = `${process.env.NEXT_PUBLIC_SANITY_URL}${process.env.NEXT_PUBLIC_SANITY_ALL_PROJECTS}`;
