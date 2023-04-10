@@ -45,30 +45,30 @@ export function WelcomeSection() {
 		<LazyMotion features={domAnimation}>
 			<section
 				id="intro"
-				className="section"
-				// gridTemplateColumns={["1fr", "1fr", "1fr 0.5fr", "1fr 0.7fr"]}
+				className="section grid grid-cols-1 md:grid-cols-[1fr_0.5fr] lg:grid-cols-[1fr_0.7fr] gap-4"
 				ref={introRef}
 			>
-				<div>
+				<div className="py-5 md:py-10">
 					<h1
 						tabIndex="0"
 						ref={ref}
-						sx={{
+						className="text-3xl md:text-5xl xl:text-6xl font-bold"
+						style={{
 							transform: isInView ? "none" : "translateX(-200px)",
 							opacity: isInView ? 1 : 0,
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 						}}
 					>
-						<p query={["passionate", "Vasile"]} styles={{ color: "blue" }}>
-							Hi, I&apos;m Vasile a passionate front-end developer.
+						<p>
+							Hi, I&apos;m <mark>Vasile</mark> a <mark>passionate</mark> front-end developer.
 						</p>
 					</h1>
 
-					<div>
+					<div className="mt-3 relative flex flex-col overflow-hidden">
 						<p
-							tabIndex="0"
 							ref={ref}
-							sx={{
+							className="text-2xl transform-none opacity-100"
+							style={{
 								transform: isInView ? "none" : "translateX(-200px)",
 								opacity: isInView ? 1 : 0,
 								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
@@ -76,14 +76,11 @@ export function WelcomeSection() {
 						>
 							I
 							<span
-								// as="span"
-								// pos="absolute"
-								// top={count === 0 ? "0" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0"}
-								// left={3}
-								// display="flex"
-								// flexDirection="column"
-								// transition="top .5s ease-in-out"
-								tabIndex="0"
+								className="absolute flex flex-col transition-all duration-500 ease-in-expo"
+								style={{
+									top: count === 0 ? "0" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0",
+									left: "13px"
+								}}
 							>
 								{text.map((element) => (
 									<TextElement key={element} element={element} />
@@ -95,7 +92,8 @@ export function WelcomeSection() {
 					<p
 						tabIndex="0"
 						ref={ref}
-						sx={{
+						className="mt-3 mb-10 text-gray-500 text-xl"
+						style={{
 							transform: isInView ? "none" : "translateX(-200px)",
 							opacity: isInView ? 1 : 0,
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
@@ -103,23 +101,24 @@ export function WelcomeSection() {
 					>
 						Stick around to see some of my work.
 					</p>
-					<button
-						aria-label="Latest projects"
+					<div
 						ref={ref}
-						sx={{
+						style={{
 							transform: isInView ? "none" : "translateY(50px)",
 							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
+							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 						}}
 					>
 						<Link
 							href="#projects"
 							onClick={onClick}
-							style={{ display: "block", padding: "0 16px", lineHeight: "40px" }}
+							tabIndex="0"
+							className="btn"
+							aria-label="Latest projects"
 						>
 							See my latest projects
 						</Link>
-					</button>
+					</div>
 				</div>
 
 				{/*{isAnimationVisible && (*/}
@@ -142,7 +141,7 @@ function TextElement({ element }) {
 		<span
 			tabIndex="0"
 			ref={ref}
-			sx={{
+			style={{
 				transform: isInView ? "none" : "translateX(-200px)",
 				opacity: isInView ? 1 : 0,
 				transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"

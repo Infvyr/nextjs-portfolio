@@ -4,11 +4,11 @@ import { WelcomeSection, AboutSection, TechnologiesSection, ProjectsSection } fr
 
 export default function Page() {
 	return (
-		<>
+		<div className="container-md">
 			<WelcomeSection />
 			<AboutSection />
 			<ProjectsSection />
 			<TechnologiesSection />
-		</>
+		</div>
 	);
 }

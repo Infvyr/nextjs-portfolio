@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useScrollTo } from "hooks";
 import { BsArrowReturnLeft } from "react-icons/bs";
-import { initial, animate, exit, transition } from "utils/motions";
+import { initial, animate, exit, transition } from "utils";
 import { menu, SiteRoutes, SiteStrings } from "../constants";
 
 export function Menu({ onClick = () => {} }) {

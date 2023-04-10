@@ -15,7 +15,7 @@ export function LayoutProvider({ children }) {
 		<LayoutContext.Provider
 			value={{ introRef, introHeight, setIntroHeight, footerRef, isFooterInView }}
 		>
-			<div>{children}</div>
+			<main className="w-full">{children}</main>
 		</LayoutContext.Provider>
 	);
 }

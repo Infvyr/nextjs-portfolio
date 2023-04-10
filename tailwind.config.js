@@ -16,13 +16,14 @@ module.exports = {
 					pink: "#FF0080"
 				},
 				blue: {
-					light: "#71c5ee",
+					lighter: "#71c5ee",
+					light: "#3182ce",
 					normal: "#025091"
 				}
 			},
 			transitionTimingFunction: {
 				"in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
-				"cst-out-back": "cubic-bezier(0.18, 0.89, 0.32, 1.28)"
+				"out-back": "cubic-bezier(0.18, 0.89, 0.32, 1.28)"
 			}
 		}
 	},
