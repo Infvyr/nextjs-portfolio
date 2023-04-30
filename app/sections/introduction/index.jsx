@@ -6,24 +6,24 @@ import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { WelcomeAnimation } from "./IntroAnimation";
 import { useScrollTo } from "hooks";
 import { LayoutContext } from "context/layout";
+import { useMediaQuery } from "utils";
 
 export function WelcomeSection() {
 	const ref = useRef(null);
 	const { introRef, setIntroHeight } = useContext(LayoutContext);
 	const isInView = useInView(ref, { once: true });
-
 	const { scrollToEl } = useScrollTo();
+	const isTabletUp = useMediaQuery("min-width: 768px");
 
 	let [count, setCount] = useState(0);
 	const [text] = useState([
-		"create modern UI based on your design,",
-		"build interactive UI using React,",
-		"develop responsive websites using Next.js."
+		"build Flutter apps for Android and iOS",
+		"convert your design into modern UI",
+		"build interactive UI using React",
+		"develop complex websites using Next.js"
 	]);
 
-	const onClick = (e) => {
-		scrollToEl(e);
-	};
+	const onClick = (e) => scrollToEl(e);
 
 	useEffect(() => {
 		let interval = setInterval(() => {
@@ -45,7 +45,7 @@ export function WelcomeSection() {
 		<LazyMotion features={domAnimation}>
 			<section
 				id="intro"
-				className="section grid grid-cols-1 md:grid-cols-[1fr_0.5fr] lg:grid-cols-[1fr_0.7fr] gap-4"
+				className="section grid grid-cols-1 md:grid-cols-[1fr_0.5fr] lg:grid-cols-[1fr_0.7fr] gap-4 items-center"
 				ref={introRef}
 			>
 				<div className="py-5 md:py-10">
@@ -60,7 +60,7 @@ export function WelcomeSection() {
 						}}
 					>
 						<p>
-							Hi, I&apos;m <mark>Vasile</mark> a <mark>passionate</mark> front-end developer.
+							Hi, I&apos;m <mark>Vasile</mark> a <mark>passionate</mark> software developer.
 						</p>
 					</h1>
 
@@ -121,11 +121,16 @@ export function WelcomeSection() {
 					</div>
 				</div>
 
-				{/*{isAnimationVisible && (*/}
-				<div>
-					<WelcomeAnimation />
-				</div>
-				{/*)}*/}
+				{isTabletUp && (
+					<div
+						style={{
+							backgroundColor: "#FFFFFF",
+							mixBlendMode: "color-burn"
+						}}
+					>
+						<WelcomeAnimation />
+					</div>
+				)}
 			</section>
 		</LazyMotion>
 	);
