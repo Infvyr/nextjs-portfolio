@@ -24,6 +24,9 @@ module.exports = {
 			transitionTimingFunction: {
 				"in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
 				"out-back": "cubic-bezier(0.18, 0.89, 0.32, 1.28)"
+			},
+			backgroundImage: {
+				inherited: "inherit"
 			}
 		}
 	},

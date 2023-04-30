@@ -13,11 +13,12 @@ export function AboutSection() {
 		<LazyMotion features={domAnimation}>
 			<section id="about" className="section">
 				<HeadingDivider title="About me" />
-				<div>
+				<div className="pt-10 pb-16 max-w-4xl flex flex-col gap-3">
 					<p
 						tabIndex="0"
 						ref={ref}
-						sx={{
+						className="text-xl font-light leading-relaxed"
+						style={{
 							transform: isInView ? "none" : "translateX(-200px)",
 							opacity: isInView ? 1 : 0,
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
@@ -31,7 +32,8 @@ export function AboutSection() {
 					<p
 						tabIndex="0"
 						ref={ref}
-						sx={{
+						className="text-xl font-light leading-relaxed"
+						style={{
 							transform: isInView ? "none" : "translateX(-200px)",
 							opacity: isInView ? 1 : 0,
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
@@ -43,7 +45,8 @@ export function AboutSection() {
 					<p
 						tabIndex="0"
 						ref={ref}
-						sx={{
+						className="text-xl font-light leading-relaxed"
+						style={{
 							transform: isInView ? "none" : "translateX(-200px)",
 							opacity: isInView ? 1 : 0,
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1.5s"
@@ -55,7 +58,8 @@ export function AboutSection() {
 					<p
 						tabIndex="0"
 						ref={ref}
-						sx={{
+						className="text-xl font-light leading-relaxed"
+						style={{
 							transform: isInView ? "none" : "translateX(-200px)",
 							opacity: isInView ? 1 : 0,
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 2s"

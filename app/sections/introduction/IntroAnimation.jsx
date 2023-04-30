@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useInView } from "framer-motion";
 
 export function WelcomeAnimation() {
+	/// TODO: Add dark mode support
 	const { colorMode } = "light";
 
 	let content;
