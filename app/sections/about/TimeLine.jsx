@@ -4,18 +4,20 @@ import { useEffect, useRef, useState } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
 
 const TimeLineData = [
-	{ year: 2017, text: "Start my journey as a WordPress developer" },
-	{ year: 2018, text: "Work as a WordPress developer" },
+	{ year: 2023, text: "Start my journey as a Flutter developer" },
+	{ year: 2022, text: "Start my journey as a React developer" },
 	{ year: 2021, text: "Dive completely into React.js" },
-	{ year: 2022, text: "Start my journey as a React developer" }
+	{ year: 2018, text: "Work as a WordPress developer" },
+	{ year: 2017, text: "Start a 3mo WordPress internship" }
 ];
 
 export function TimeLine() {
+	/// TODO: Add color mode support
 	const colorMode = "dark";
-	const [activeItem, setActiveItem] = useState(0);
-	const carouselRef = useRef();
-	const animRef = useRef(null);
-	const isInView = useInView(animRef, { once: true });
+	const [, setActiveItem] = useState(0);
+	const carouselRef = useRef(null);
+	// const animRef = useRef(null);
+	const isInView = useInView(carouselRef, { once: true });
 
 	const scroll = (node, left) => {
 		return node.scrollTo({ left, behavior: "smooth" });
@@ -61,30 +63,17 @@ export function TimeLine() {
 			<ul
 				ref={carouselRef}
 				onScroll={handleScroll}
-				// display="flex"
-				// justifyContent="space-between"
-				// gap={5}
-				// overflowX="auto"
-				// scrollSnapType="x mandatory"
-				// cursor="all-scroll"
-				sx={{
-					"&": {
-						scrollbarWidth: "none"
-					},
-					"&::-webkit-scrollbar": {
-						display: "none"
-					}
-				}}
+				className="flex flex-row flex-nowrap gap-5 justify-between overflow-x-auto snap-x cursor-pointer hide-scroll-bar"
 			>
 				<>
 					{TimeLineData.map((item, index) => {
 						return (
-							<ul
+							<li
+								id={`carousel__item-${index}`}
 								key={index}
-								// w={["calc((100% / 2) - 30px)", "calc(100% / 4)", "calc(100% / 6)"]}
-								// scrollSnapAlign="start"
-								ref={animRef}
-								sx={{
+								className="flex flex-col gap-3 snap-start w-[calc((100%/2)-30px)] sm:w-1/3 md:w-1/6"
+								onClick={(e) => handleClick(e, index)}
+								style={{
 									transform: isInView
 										? "none"
 										: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
@@ -94,49 +83,44 @@ export function TimeLine() {
 									}s`
 								}}
 							>
-								<div
-									// index={index}
-									id={`carousel__item-${index}`}
-									// active={activeItem}
-									onClick={(e) => handleClick(e, index)}
-									// flexDirection="column"
-									// gap={3}
+								<h3
+									tabIndex="0"
+									aria-label={"What do I do in " + item.year}
+									className="flex items-center gap-4 text-2xl font-bold"
 								>
-									<h3 tabIndex="0" aria-label={"What do I do in " + item.year}>
-										{`${item.year}`}
-										<svg
-											width="208"
-											height="6"
-											viewBox="0 0 208 6"
-											xmlns="http://www.w3.org/2000/svg"
-											fill={colorMode === "dark" ? "#fff" : "#232323"}
-										>
-											<path
-												fillRule="evenodd"
-												clipRule="evenodd"
-												d="M2.5 5.5C3.88071 5.5 5 4.38071 5 3V3.5L208 3.50002V2.50002L5 2.5V3C5 1.61929 3.88071 0.5 2.5 0.5C1.11929 0.5 0 1.61929 0 3C0 4.38071 1.11929 5.5 2.5 5.5Z"
-												fillOpacity="0.5"
-											/>
-											<defs>
-												<linearGradient
-													id="paint0_linear"
-													x1="-4.30412e-10"
-													y1="0.5"
-													x2="208"
-													y2="0.500295"
-													gradientUnits="userSpaceOnUse"
-												>
-													<stop stopColor="#fff" />
-													<stop offset="0.79478" stopColor="#fff" stopOpacity="0" />
-												</linearGradient>
-											</defs>
-										</svg>
-									</h3>
-									<p letterSpacing="0.02em" tabIndex="0">
-										{item.text}
-									</p>
-								</div>
-							</ul>
+									{`${item.year}`}
+									<svg
+										width="208"
+										height="6"
+										viewBox="0 0 208 6"
+										xmlns="http://www.w3.org/2000/svg"
+										fill={colorMode === "dark" ? "#fff" : "#232323"}
+									>
+										<path
+											fillRule="evenodd"
+											clipRule="evenodd"
+											d="M2.5 5.5C3.88071 5.5 5 4.38071 5 3V3.5L208 3.50002V2.50002L5 2.5V3C5 1.61929 3.88071 0.5 2.5 0.5C1.11929 0.5 0 1.61929 0 3C0 4.38071 1.11929 5.5 2.5 5.5Z"
+											fillOpacity="0.5"
+										/>
+										<defs>
+											<linearGradient
+												id="paint0_linear"
+												x1="-4.30412e-10"
+												y1="0.5"
+												x2="208"
+												y2="0.500295"
+												gradientUnits="userSpaceOnUse"
+											>
+												<stop stopColor="#fff" />
+												<stop offset="0.79478" stopColor="#fff" stopOpacity="0" />
+											</linearGradient>
+										</defs>
+									</svg>
+								</h3>
+								<p className="tracking-wide " tabIndex="0">
+									{item.text}
+								</p>
+							</li>
 						);
 					})}
 				</>

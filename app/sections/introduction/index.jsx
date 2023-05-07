@@ -18,7 +18,7 @@ export function WelcomeSection() {
 	let [count, setCount] = useState(0);
 	const [text] = useState([
 		"build Flutter apps for Android and iOS",
-		"convert your design into modern UI",
+		"convert design into modern UI",
 		"build interactive UI using React",
 		"develop complex websites using Next.js"
 	]);
