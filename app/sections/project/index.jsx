@@ -5,7 +5,7 @@ import useSWR from "swr";
 import { HeadingDivider, Loader } from "components";
 import { ProjectItem } from "./ProjectItem";
 import { fetcher } from "utils/fetcher";
-import { Routes } from "constants";
+import { SiteRoutes } from "constants";
 
 const url = `${process.env.NEXT_PUBLIC_SANITY_URL}${process.env.NEXT_PUBLIC_SANITY_LATEST_PROJECTS}`;
 
@@ -37,7 +37,7 @@ export function ProjectsSection() {
 				</Suspense>
 
 				<Link
-					href={Routes.projects}
+					href={SiteRoutes.projects}
 					tabIndex={-1}
 					aria-label="Go to projects page"
 					ref={btnRef}
