@@ -6,7 +6,7 @@ import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useScrollTo } from "hooks";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { initial, animate, exit, transition } from "utils";
-import { menu, SiteRoutes, SiteStrings } from "../constants";
+import { menu, SiteRoutes, SiteStrings, Routes } from "constants";
 
 export function Menu({ onClick = () => {} }) {
 	let content, mainMenu, backMenu;
@@ -41,13 +41,11 @@ export function Menu({ onClick = () => {} }) {
 
 	backMenu = (
 		<m.div initial={initial} animate={animate} exit={exit} transition={transition}>
-			<Link href="/" title={SiteStrings.backToMainPageTitle} tabIndex={-1}>
-				<button aria-label={SiteStrings.goToMainPageTitle}>
-					<span>
-						<BsArrowReturnLeft />
-					</span>
-					{SiteStrings.backToMainText}
-				</button>
+			<Link href={Routes.home} title={SiteStrings.backToMainPageTitle} className="icon-link-btn">
+				<span>
+					<BsArrowReturnLeft />
+				</span>
+				{SiteStrings.backToMainText}
 			</Link>
 		</m.div>
 	);

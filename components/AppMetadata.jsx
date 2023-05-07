@@ -1,6 +1,6 @@
 const author = "Vasile Novatchii";
 const description =
-	"A front-end developer from Moldova, who loves to develop beautiful websites, single page applications, customer relationship management or code from scratch using React and Next.js";
+	"Software developer from Moldova, Republic of, who loves to develop beautiful websites, single page applications, customer relationship management or code from scratch using React and Next.js";
 const url = "https://vasile-novatchii.netlify.app";
 export const AppMetadata = {
 	title: {
@@ -12,11 +12,9 @@ export const AppMetadata = {
 	},
 	keywords: [
 		"Vasile Novatchii",
+		"Vasile Novatchii - developer",
 		"Portfolio website",
-		"React Portfolio",
-		"Next.js Portfolio",
-		"Frontend Developer Portfolio",
-		"Chakra Portfolio"
+		"Frontend Developer Portfolio"
 	],
 	creator: author,
 	authors: [{ name: author, url: url }],

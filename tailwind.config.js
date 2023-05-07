@@ -19,16 +19,37 @@ module.exports = {
 					lighter: "#71c5ee",
 					light: "#3182ce",
 					normal: "#025091"
+				},
+				card: {
+					dark: "rgba(255, 255, 255, 0.04)",
+					light: "rgba(255, 255, 255, 0.80)"
+				},
+				badge: {
+					dark: "rgba(226, 232, 240, 0.16)",
+					light: "#EDF2F7"
 				}
 			},
 			transitionTimingFunction: {
 				"in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
 				"out-back": "cubic-bezier(0.18, 0.89, 0.32, 1.28)"
 			},
+			transitionDuration: {
+				DEFAULT: "300ms"
+			},
 			backgroundImage: {
 				inherited: "inherit"
 			}
 		}
 	},
-	plugins: []
+	plugins: [
+		function ({ addUtilities }) {
+			addUtilities({
+				".flex-center": {
+					display: "flex",
+					"align-items": "center",
+					"justify-content": "center"
+				}
+			});
+		}
+	]
 };

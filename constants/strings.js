@@ -4,3 +4,8 @@ export const SiteStrings = {
 	goToMainPageTitle: "Go to main page",
 	backToMainText: "Back to main"
 };
+
+export const Routes = {
+	home: "/",
+	projects: "/projects"
+};

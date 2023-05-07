@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import useSWR from "swr";
 import { ErrorBoundary } from "react-error-boundary";
-import { HeadingDivider } from "components";
+import { HeadingDivider, Loader } from "components";
 import { ProjectItem } from "app/sections/project/ProjectItem";
 import { Filter } from "./components/Filter";
 import { fetcher } from "utils/fetcher";
@@ -22,20 +22,24 @@ export default function Page() {
 	const onClick = (catName) => setCategory(catName);
 
 	return (
-		<div id="projects" className="section">
-			<HeadingDivider title="Relevant projects" />
+		<div className="container-md">
+			<section id="projects" className="section">
+				<HeadingDivider title="Relevant projects" />
 
-			<Filter onClick={onClick} />
+				<Filter onClick={onClick} />
 
-			<ErrorBoundary FallbackComponent={Error}>
-				<div>
-					{filteredProjects
-						?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-						?.map((project) => (
-							<ProjectItem key={project._id} project={project} />
-						))}
-				</div>
-			</ErrorBoundary>
+				<Suspense fallback={<Loader width="100%" />}>
+					<ErrorBoundary FallbackComponent={Error}>
+						<div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+							{filteredProjects
+								?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+								?.map((project) => (
+									<ProjectItem key={project._id} project={project} />
+								))}
+						</div>
+					</ErrorBoundary>
+				</Suspense>
+			</section>
 		</div>
 	);
 }

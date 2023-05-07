@@ -16,4 +16,7 @@
     .heading-divider{
         @apply flex items-center font-extrabold text-3xl md:text-4xl relative w-full uppercase gap-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-50 after:h-[1px] after:flex-1 after:bg-inherited;
     }
+    .icon-link-btn {
+        @apply flex-center gap-2.5 px-2 p-1 rounded transition-colors hover:bg-badge-dark;
+    }
 }

@@ -1,15 +1,11 @@
-"use client";
-
 import { Suspense, useRef } from "react";
 import { useInView } from "framer-motion";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import useSWR from "swr";
-import { HeadingDivider } from "components";
+import { HeadingDivider, Loader } from "components";
 import { ProjectItem } from "./ProjectItem";
 import { fetcher } from "utils/fetcher";
-
-const DynamicLoader = dynamic(() => import("components/Loader").then((mod) => mod.Loader));
+import { Routes } from "constants";
 
 const url = `${process.env.NEXT_PUBLIC_SANITY_URL}${process.env.NEXT_PUBLIC_SANITY_LATEST_PROJECTS}`;
 
@@ -27,24 +23,25 @@ export function ProjectsSection() {
 	return (
 		<section id="projects" className="section">
 			<HeadingDivider title="Latest projects" />
-			<div />
+			<div className="h-10 md:h-14" />
 
-			<Suspense fallback={<DynamicLoader width="100%" />}>
-				<div>
-					{projects
-						?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-						?.map((project, index) => (
-							<ProjectItem key={project._id} project={project} index={index} />
-						))}
-				</div>
-			</Suspense>
+			<div className="flex flex-col items-center gap-8 md:gap-14">
+				<Suspense fallback={<Loader width="100%" />}>
+					<div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+						{projects
+							?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+							?.map((project, index) => (
+								<ProjectItem key={project._id} project={project} index={index} />
+							))}
+					</div>
+				</Suspense>
 
-			<div>
 				<Link
-					href="/projects"
+					href={Routes.projects}
 					tabIndex={-1}
-					aria-label="Go to project page"
+					aria-label="Go to projects page"
 					ref={btnRef}
+					className="btn"
 					style={{
 						transform: btnRef ? "none" : "translateX(-50px)",
 						opacity: isBtnInView ? 1 : 0,
