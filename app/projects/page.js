@@ -28,7 +28,13 @@ export default function Page() {
 
 				<Filter onClick={onClick} />
 
-				<Suspense fallback={<Loader width="100%" />}>
+				<Suspense
+					fallback={
+						<div className="flex-center">
+							<Loader width="100%" />
+						</div>
+					}
+				>
 					<ErrorBoundary FallbackComponent={Error}>
 						<div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
 							{filteredProjects

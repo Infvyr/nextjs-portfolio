@@ -26,7 +26,13 @@ export function ProjectsSection() {
 			<div className="h-10 md:h-14" />
 
 			<div className="flex flex-col items-center gap-8 md:gap-14">
-				<Suspense fallback={<Loader width="100%" />}>
+				<Suspense
+					fallback={
+						<div className="flex-center">
+							<Loader width="100%" />
+						</div>
+					}
+				>
 					<div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
 						{projects
 							?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
