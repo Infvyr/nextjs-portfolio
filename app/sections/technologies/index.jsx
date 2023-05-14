@@ -9,6 +9,7 @@ import { IoLogoJavascript } from "react-icons/io";
 import { FaReact, FaWordpressSimple, FaFigma, FaTrello } from "react-icons/fa";
 import { BsBootstrap } from "react-icons/bs";
 import { TbBrandNextjs, TbBrandTailwind } from "react-icons/tb";
+import { RiFlutterFill } from "react-icons/ri";
 import AdobeXDIcon from "public/assets/svg/adobexd.svg";
 import ZeplinIcon from "public/assets/svg/zeplin.svg";
 import WebstormIcon from "public/assets/svg/webstorm.svg";
@@ -20,18 +21,17 @@ import StyledIcon from "public/assets/svg/styledcomponents.svg";
 
 const Technologies = [
 	{
+		category: "Mobile",
+		items: [{ name: "Flutter", icon: <RiFlutterFill size={32} /> }]
+	},
+	{
 		category: "Front-end",
 		items: [
 			{ name: "HTML", icon: <AiFillHtml5 size={32} /> },
 			{ name: "CSS", icon: <DiCss3 size={32} /> },
 			{ name: "JS", icon: <IoLogoJavascript size={32} /> },
 			{ name: "React", icon: <FaReact size={32} /> },
-			{ name: "Next", icon: <TbBrandNextjs size={32} /> }
-		]
-	},
-	{
-		category: "UI packages",
-		items: [
+			{ name: "Next", icon: <TbBrandNextjs size={32} /> },
 			{ name: "Tailwind CSS", icon: <TbBrandTailwind size={32} /> },
 			{ name: "MUI", icon: <MuiIcon width={32} /> },
 			{ name: "AntD", icon: <AiOutlineAntDesign size={32} /> },
@@ -74,43 +74,45 @@ export function TechnologiesSection() {
 			<section id="tech" className="section">
 				<HeadingDivider title="Technologies" />
 				<p
-					tabIndex="0"
 					ref={textRef}
-					// style={{
-					// 	transform: isTextInView ? "none" : "translateX(-200px)",
-					// 	opacity: isTextInView ? 1 : 0,
-					// 	transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-					// }}
+					tabIndex="0"
+					className="my-5 text-2xl"
+					style={{
+						transform: isTextInView ? "none" : "translateX(-200px)",
+						opacity: isTextInView ? 1 : 0,
+						transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+					}}
 				>
 					I work with the following technologies and tools:
 				</p>
 
 				{!!Technologies.length && (
-					<div>
+					<div className="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
 						{Technologies.map((tech, index) => {
 							return (
 								<div
 									key={tech.category}
 									ref={stackRef}
-									// sx={{
-									// 	transform: isStackInView
-									// 		? "none"
-									// 		: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
-									// 	opacity: isStackInView ? 1 : 0,
-									// 	transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-									// 		index === 0 ? 0 : 0.5 * index
-									// 	}`
-									// }}
+									className="flex flex-col gap-4 flex-1 md:flex-auto"
+									style={{
+										transform: isStackInView
+											? "none"
+											: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
+										opacity: isStackInView ? 1 : 0,
+										transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+											index === 0 ? 0 : 0.5 * index
+										}s`
+									}}
 								>
-									<h3 tabIndex="0">{tech.category}</h3>
-									<div>
+									<h3 tabIndex="0" className="text-2xl font-bold">
+										{tech.category}
+									</h3>
+									<div className="flex items-center flex-wrap gap-x-5 gap-y-8">
 										{tech.items.map((item) => (
 											<Fragment key={item.name}>
-												<div>
-													<span aria-label={item.name} tabIndex="0" role="img">
-														{item.icon}
-													</span>
-												</div>
+												<span aria-label={item.name} tabIndex="0" role="img">
+													{item.icon}
+												</span>
 											</Fragment>
 										))}
 									</div>

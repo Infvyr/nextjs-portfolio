@@ -23,7 +23,7 @@ export function Menu({ onClick = () => {} }) {
 	mainMenu = (
 		<m.nav initial={initial} animate={animate} exit={exit} transition={transition} role="menu">
 			<ul className="flex justify-center gap-5 flex-col md:flex-row items-start md:items-center">
-				{menu.sort(sortAscending).map((menuItem) => (
+				{menu?.sort(sortAscending).map((menuItem) => (
 					<li key={menuItem.id}>
 						<a
 							href={menuItem.url}
@@ -42,21 +42,21 @@ export function Menu({ onClick = () => {} }) {
 	backMenu = (
 		<m.div initial={initial} animate={animate} exit={exit} transition={transition}>
 			<Link
-				href={SiteRoutes.home}
-				title={SiteStrings.backToMainPageTitle}
+				href={SiteRoutes?.home}
+				title={SiteStrings?.backToMainPageTitle}
 				className="icon-link-btn"
 			>
 				<span>
 					<BsArrowReturnLeft />
 				</span>
-				{SiteStrings.backToMainText}
+				{SiteStrings?.backToMainText}
 			</Link>
 		</m.div>
 	);
 
-	content = pathname === SiteRoutes.projects ? backMenu : mainMenu;
+	content = pathname === SiteRoutes?.projects ? backMenu : mainMenu;
 
-	if (menu.length === 0) {
+	if (menu?.length === 0) {
 		return null;
 	}
 
