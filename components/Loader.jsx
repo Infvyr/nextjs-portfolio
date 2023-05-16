@@ -1,12 +1,12 @@
-"use client";
+import { AiOutlineLoading } from "react-icons/ai";
 
-export function Loader({ width = "100vw" }) {
+export function Loader({ textClassNames = "" }) {
 	return (
-		<div>
-			<div>
-				<div width="60px" height="60px" />
-				<p>Loading...</p>
+		<div className="flex-center flex-col gap-5 ite">
+			<div className="animate-spin ">
+				<AiOutlineLoading size={30} />
 			</div>
+			<p className={textClassNames}>Loading...</p>
 		</div>
 	);
 }

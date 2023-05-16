@@ -19,4 +19,10 @@
     .icon-link-btn {
         @apply flex-center gap-2.5 px-2 p-1 rounded transition-colors hover:bg-badge-dark;
     }
+    .icon-link-btn--outline {
+        @apply border border-badge-dark;
+    }
+    .icon-link-btn--active {
+        @apply bg-badge-dark;
+    }
 }

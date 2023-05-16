@@ -53,6 +53,14 @@
     @apply opacity-100;
 }
 
+.image-gallery-content.fullscreen .image-gallery-fullscreen-button{
+    @apply hidden;
+}
+
+.image-gallery-content.fullscreen .image-gallery-slide img {
+    @apply object-contain;
+}
+
 #projects .image-gallery-index{
     @apply hidden;
 }

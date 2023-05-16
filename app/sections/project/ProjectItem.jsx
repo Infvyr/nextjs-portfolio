@@ -8,8 +8,7 @@ import { FiExternalLink } from "react-icons/fi";
 
 import "react-image-gallery/styles/css/image-gallery.css";
 
-export function ProjectItem(props) {
-	const { project, index } = props;
+export function ProjectItem({ project, index }) {
 	const { description, images, liveUrl, repoUrl, stack, title } = project;
 	const cardRef = useRef(null);
 	const isInView = useInView(cardRef, { once: true });
@@ -34,7 +33,7 @@ export function ProjectItem(props) {
 			>
 				<figure>
 					<div className="aspect-[12/9.2] w-full h-full">
-						<Suspense fallback={<Loader width="100%" />}>
+						<Suspense fallback={<Loader />}>
 							<ImageGallery
 								items={galleryImages}
 								showPlayButton={false}

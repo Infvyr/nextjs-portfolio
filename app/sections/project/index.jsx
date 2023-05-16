@@ -3,9 +3,11 @@ import { useInView } from "framer-motion";
 import Link from "next/link";
 import useSWR from "swr";
 import { HeadingDivider, Loader } from "components";
-import { ProjectItem } from "./ProjectItem";
 import { fetcher } from "utils/fetcher";
 import { SiteRoutes } from "constants";
+import Error from "../../error";
+import { ErrorBoundary } from "react-error-boundary";
+import { Projects } from "../../projects/components/Projects";
 
 const url = `${process.env.NEXT_PUBLIC_SANITY_URL}${process.env.NEXT_PUBLIC_SANITY_LATEST_PROJECTS}`;
 
@@ -29,17 +31,13 @@ export function ProjectsSection() {
 				<Suspense
 					fallback={
 						<div className="flex-center">
-							<Loader width="100%" />
+							<Loader />
 						</div>
 					}
 				>
-					<div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-						{projects
-							?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-							?.map((project, index) => (
-								<ProjectItem key={project._id} project={project} index={index} />
-							))}
-					</div>
+					<ErrorBoundary FallbackComponent={Error}>
+						<Projects projects={projects} />
+					</ErrorBoundary>
 				</Suspense>
 
 				<Link
