@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Dialog } from "@headlessui/react";
 import { BsGrid } from "react-icons/bs";
 import { ConnectMedia, Menu } from "components";
 import {
@@ -37,20 +36,14 @@ export function MobileMenu() {
 			</m.button>
 
 			<AnimatePresence>
-				{open && (
-					<Dialog
-						as={m.div}
-						open={isOpen}
-						onClose={() => null}
+				{isOpen && (
+					<m.div
 						className={`bg-black/90 fixed left-0 right-0 top-[${menuMobileHeight}] min-h-screen z-50`}
 						initial={initialMobile}
 						animate={animateMobile}
 						exit={exitMobile}
 					>
-						<Dialog.Title
-							as="div"
-							className="p-6 flex items-center justify-between border-b border-b-brand-light z-10"
-						>
+						<header className="p-6 flex items-center justify-between border-b border-b-brand-light z-10">
 							<ConnectMedia />
 							<button
 								onClick={onClose}
@@ -58,11 +51,11 @@ export function MobileMenu() {
 							>
 								<IoMdClose size="24" />
 							</button>
-						</Dialog.Title>
-						<Dialog.Panel className="px-10">
+						</header>
+						<div className="px-10">
 							<Menu onClick={onClose} />
-						</Dialog.Panel>
-					</Dialog>
+						</div>
+					</m.div>
 				)}
 			</AnimatePresence>
 		</LazyMotion>
