@@ -18,12 +18,12 @@ export function Logo() {
 				exit={exit}
 				transition={transition}
 			>
-				{pathname === SiteRoutes.projects ? (
+				{pathname === SiteRoutes?.projects ? (
 					<Link href={SiteRoutes.home} aria-label="Go to home page" role="link">
-						{SiteStrings.textLogo}
+						{SiteStrings?.textLogo}
 					</Link>
 				) : (
-					<>{SiteStrings.textLogo}</>
+					<>{SiteStrings?.textLogo}</>
 				)}
 			</m.h3>
 		</LazyMotion>

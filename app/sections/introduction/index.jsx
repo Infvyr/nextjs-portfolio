@@ -113,16 +113,7 @@ export function WelcomeSection() {
 						</div>
 					</div>
 
-					{isTabletUp && (
-						<div
-							style={{
-								backgroundColor: "#FFFFFF",
-								mixBlendMode: "color-burn"
-							}}
-						>
-							<WelcomeAnimation />
-						</div>
-					)}
+					{isTabletUp && <WelcomeAnimation />}
 				</div>
 			</section>
 		</LazyMotion>

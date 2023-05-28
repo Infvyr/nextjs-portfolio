@@ -1,7 +1,7 @@
 "use client";
 
-import { Logo, Menu, ColorMode, ConnectMedia, MobileMenu } from "components";
-import { useMediaQuery } from "../utils";
+import { Logo, Menu, ConnectMedia, MobileMenu, ThemeSwitcher } from "components";
+import { useMediaQuery } from "utils";
 
 export function AppHeader() {
 	const isMobile = useMediaQuery();
@@ -14,7 +14,7 @@ export function AppHeader() {
 					{isMobile ? <MobileMenu /> : <Menu />}
 					<div className="flex items-center gap-5">
 						<ConnectMedia />
-						<ColorMode />
+						<ThemeSwitcher />
 					</div>
 				</div>
 			</div>

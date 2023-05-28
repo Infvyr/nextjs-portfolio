@@ -21,7 +21,7 @@ export function ProjectItem({ project, index }) {
 	return (
 		<article
 			ref={cardRef}
-			className="flex flex-col rounded-lg bg-card-dark"
+			className="flex flex-col rounded-lg bg-card-light dark:bg-card-dark"
 			style={{
 				transform: isInView
 					? "none"
@@ -62,7 +62,7 @@ export function ProjectItem({ project, index }) {
 								<span
 									key={tag}
 									tabIndex="0"
-									className="px-2 text-sm leading-normal rounded bg-badge-dark"
+									className="px-2 text-sm leading-normal rounded bg-badge-light/50 dark:bg-badge-dark"
 								>
 									{tag}
 								</span>
