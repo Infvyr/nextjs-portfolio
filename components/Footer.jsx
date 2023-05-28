@@ -1,12 +1,11 @@
 "use client";
 
-import { useContext } from "react";
+import { useRef } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { ConnectMedia, ScrollTop } from "components";
-import { LayoutContext } from "context/layout";
 
 export function AppFooter() {
-	const { footerRef } = useContext(LayoutContext);
+	const footerRef = useRef(null);
 	const isInView = useInView(footerRef, { once: true });
 	const year = new Date().getFullYear();
 
