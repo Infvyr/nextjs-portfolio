@@ -4,7 +4,8 @@ const description =
 const url = "https://vasile-novatchii.netlify.app";
 export const AppMetadata = {
 	title: {
-		default: `${author} | Portfolio`
+		default: `Portfolio | ${author}`,
+		template: `%s | ${author}`
 	},
 	description: description,
 	icons: {
@@ -18,6 +19,7 @@ export const AppMetadata = {
 	],
 	creator: author,
 	authors: [{ name: author, url: url }],
+	colorScheme: "dark",
 	openGraph: {
 		title: `${author} | Portfolio`,
 		description: description,
