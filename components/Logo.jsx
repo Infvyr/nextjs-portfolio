@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { initial, animate, exit, transition } from "utils/motions";
-import { SiteRoutes, SiteStrings } from "constants";
+import { SITE_ROUTES, SITE_STRINGS } from "../constants";
 
 export function Logo() {
 	const pathname = usePathname();
@@ -18,12 +18,12 @@ export function Logo() {
 				exit={exit}
 				transition={transition}
 			>
-				{pathname === SiteRoutes?.projects ? (
-					<Link href={SiteRoutes.home} aria-label="Go to home page" role="link">
-						{SiteStrings?.textLogo}
+				{pathname === SITE_ROUTES.projects ? (
+					<Link href={SITE_ROUTES.home} aria-label="Go to home page" role="link">
+						{SITE_STRINGS.textLogo}
 					</Link>
 				) : (
-					<>{SiteStrings?.textLogo}</>
+					<>{SITE_STRINGS.textLogo}</>
 				)}
 			</m.h3>
 		</LazyMotion>

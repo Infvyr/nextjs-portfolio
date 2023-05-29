@@ -1,6 +1,6 @@
 import { BsFillEnvelopeOpenFill, BsGithub, BsLinkedin } from "react-icons/bs";
 
-export const socialMedia = [
+export const SOCIAL_MEDIA = [
 	{
 		id: "linkedin",
 		icon: <BsLinkedin />,

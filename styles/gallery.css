@@ -1,66 +1,64 @@
-.gallery-item.image-gallery{
-    @apply w-[inherit] h-[inherit];
+.gallery-item.image-gallery {
+	@apply w-[inherit] h-[inherit];
 }
 
-.gallery-item :is(
-    .image-gallery-content,
-    .image-gallery-slide-wrapper,
-    .image-gallery-swipe,
-    .image-gallery-slides,
-    .image-gallery-slide,
-    .image-gallery-slide img
-) {
-    @apply w-[inherit] h-[inherit];
+.gallery-item
+	:is(
+		.image-gallery-content,
+		.image-gallery-slide-wrapper,
+		.image-gallery-swipe,
+		.image-gallery-slides,
+		.image-gallery-slide,
+		.image-gallery-slide img
+	) {
+	@apply w-[inherit] h-[inherit];
 }
 
 .gallery-item .image-gallery-slide {
-    @apply cursor-default;
+	@apply cursor-default;
 }
 
-.gallery-item .image-gallery-slide img{
-    @apply h-[inherit] w-[inherit] object-cover;
+.gallery-item .image-gallery-slide img {
+	@apply h-[inherit] w-[inherit] object-cover;
 }
 
-.gallery-item :is(
-    .image-gallery-left-nav,
-    .image-gallery-right-nav
-) {
-    @apply top-0 bottom-0 transform-none px-0 opacity-10 transition-opacity;
+.gallery-item :is(.image-gallery-left-nav, .image-gallery-right-nav) {
+	@apply top-0 bottom-0 transform-none px-0 opacity-10 transition-opacity;
 }
 
-.gallery-item .image-gallery-svg{
-    @apply !h-16;
+.gallery-item .image-gallery-svg {
+	@apply !h-16;
 }
 
 .gallery-item .image-gallery-fullscreen-button {
-    @apply absolute top-0 bottom-0 left-[60px] w-[calc(100%-120px)] p-5 flex-center opacity-0 transition-opacity;
+	@apply absolute top-0 bottom-0 left-[60px] w-[calc(100%-120px)] p-5 flex-center opacity-0 transition-opacity;
 }
 
-.gallery-item .image-gallery-fullscreen-button .image-gallery-svg{
-    @apply !h-8 !w-8;
+.gallery-item .image-gallery-fullscreen-button .image-gallery-svg {
+	@apply !h-8 !w-8;
 }
 
 .gallery-item:hover .image-gallery-fullscreen-button {
-    @apply opacity-100 cursor-zoom-in;
+	@apply opacity-100 cursor-zoom-in;
 }
 
 .gallery-item .image-gallery-right-nav:hover,
 .gallery-item .image-gallery-left-nav:hover {
-    @apply opacity-100;
+	@apply opacity-100;
 }
 
 .gallery-item .image-gallery-icon:focus {
-    @apply opacity-100;
+	@apply opacity-100;
 }
 
-.image-gallery-content.fullscreen .image-gallery-fullscreen-button{
-    @apply hidden;
+.image-gallery-content.fullscreen .image-gallery-fullscreen-button {
+	@apply hidden;
 }
 
 .image-gallery-content.fullscreen .image-gallery-slide img {
-    @apply object-contain;
+	@apply object-contain;
 }
 
-#projects .image-gallery-index{
-    @apply hidden;
+#projects .image-gallery-index {
+	@apply hidden;
 }

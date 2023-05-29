@@ -1,28 +1,28 @@
 @tailwind components;
 
 @layer components {
-    .section {
-        @apply py-12 md:py-16;
-    }
-    .container-md {
-        @apply max-w-7xl mx-auto px-4;
-    }
-    mark {
-        @apply bg-transparent text-blue-light;
-    }
-    .btn {
-        @apply min-h-[40px] px-4 rounded-md bg-blue-light text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-blue-normal  focus:ring-1 focus:ring-blue-normal;
-    }
-    .heading-divider{
-        @apply flex items-center font-extrabold text-3xl md:text-4xl relative w-full uppercase gap-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-50 after:h-[1px] after:flex-1 after:bg-inherited text-brand-dark dark:text-brand-light;
-    }
-    .icon-link-btn {
-        @apply flex-center gap-2.5 px-2 p-1 rounded transition-colors hover:bg-badge-light dark:hover:bg-badge-dark;
-    }
-    .icon-link-btn--outline {
-        @apply border border-badge-dark;
-    }
-    .icon-link-btn--active {
-        @apply bg-badge-light dark:bg-badge-dark;
-    }
+	.section {
+		@apply py-12 md:py-16;
+	}
+	.container-md {
+		@apply max-w-7xl mx-auto px-4;
+	}
+	mark {
+		@apply bg-transparent text-blue-light;
+	}
+	.btn {
+		@apply min-h-[40px] px-4 rounded-md bg-blue-light text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-blue-normal  focus:ring-1 focus:ring-blue-normal;
+	}
+	.heading-divider {
+		@apply flex items-center font-extrabold text-3xl md:text-4xl relative w-full uppercase gap-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-50 after:h-[1px] after:flex-1 after:bg-inherited text-brand-dark dark:text-brand-light;
+	}
+	.icon-link-btn {
+		@apply flex-center gap-2.5 px-2 p-1 rounded transition-colors hover:bg-badge-light dark:hover:bg-badge-dark;
+	}
+	.icon-link-btn--outline {
+		@apply border border-badge-dark;
+	}
+	.icon-link-btn--active {
+		@apply bg-badge-light dark:bg-badge-dark;
+	}
 }
