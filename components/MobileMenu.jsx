@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsGrid } from "react-icons/bs";
 import { ConnectMedia, Menu } from "components";
 import {
@@ -10,7 +10,6 @@ import {
 	exitMobile,
 	initial,
 	initialMobile,
-	menuMobileHeight,
 	transition
 } from "utils";
 import { m, AnimatePresence, domAnimation, LazyMotion } from "framer-motion";
@@ -22,9 +21,14 @@ export function MobileMenu() {
 	const onClose = () => setIsOpen(false);
 	const onOpen = () => setIsOpen(true);
 
+	useEffect(() => {
+		document.body.style.overflow = isOpen ? "hidden" : "auto";
+	}, [isOpen]);
+
 	return (
 		<LazyMotion features={domAnimation}>
 			<m.button
+				className="p-2"
 				onClick={onOpen}
 				title="Open menu"
 				initial={initial}
@@ -38,7 +42,7 @@ export function MobileMenu() {
 			<AnimatePresence>
 				{isOpen && (
 					<m.div
-						className={`bg-black/90 fixed left-0 right-0 top-[${menuMobileHeight}] min-h-screen z-50`}
+						className={`backdrop-blur-md fixed left-0 right-0 top-0 min-h-screen z-50`}
 						initial={initialMobile}
 						animate={animateMobile}
 						exit={exitMobile}
@@ -52,7 +56,7 @@ export function MobileMenu() {
 								<IoMdClose size="24" />
 							</button>
 						</header>
-						<div className="px-10">
+						<div className="px-6 py-10">
 							<Menu onClick={onClose} />
 						</div>
 					</m.div>

@@ -16,10 +16,10 @@ export function WelcomeSection() {
 
 	let [count, setCount] = useState(0);
 	const [text] = useState([
-		"build Flutter apps for Android and iOS",
+		"build Flutter apps for Android/iOS",
 		"convert design into modern UI",
 		"build interactive UI using React",
-		"develop complex websites using Next.js"
+		"develop websites using Next.js"
 	]);
 
 	const onClick = (e) => scrollToEl(e);
@@ -59,7 +59,7 @@ export function WelcomeSection() {
 						<div className="mt-3 relative flex flex-col overflow-hidden">
 							<p
 								ref={ref}
-								className="text-2xl transform-none opacity-100"
+								className="text-[17px] md:text-2xl transform-none opacity-100"
 								style={{
 									transform: isInView ? "none" : "translateX(-200px)",
 									opacity: isInView ? 1 : 0,
@@ -70,7 +70,16 @@ export function WelcomeSection() {
 								<span
 									className="absolute flex flex-col transition-all duration-500 ease-in-expo"
 									style={{
-										top: count === 0 ? "0" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0",
+										top:
+											count === 0
+												? "0"
+												: count === 1
+												? "-100%"
+												: count === 2
+												? "-200%"
+												: count === 3
+												? "-300%"
+												: "0",
 										left: "13px"
 									}}
 								>
@@ -130,6 +139,7 @@ function TextElement({ element }) {
 		<span
 			tabIndex="0"
 			ref={ref}
+			className="text-[17px] md:text-2xl"
 			style={{
 				transform: isInView ? "none" : "translateX(-200px)",
 				opacity: isInView ? 1 : 0,
