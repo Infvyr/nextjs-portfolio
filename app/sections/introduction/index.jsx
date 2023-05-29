@@ -1,43 +1,28 @@
 "use client";
 
-import { useEffect, useState, useRef, useContext } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import {
-	Flex,
-	GridItem,
-	Button,
-	Heading,
-	Highlight,
-	Grid,
-	Text,
-	useMediaQuery,
-	useColorModeValue
-} from "@chakra-ui/react";
 import { WelcomeAnimation } from "./IntroAnimation";
 import { useScrollTo } from "hooks";
-import { LayoutContext } from "context/layout";
+import { useMediaQuery } from "utils";
 
 export function WelcomeSection() {
 	const ref = useRef(null);
-	const { introRef, setIntroHeight } = useContext(LayoutContext);
+	const introRef = useRef(null);
 	const isInView = useInView(ref, { once: true });
-
 	const { scrollToEl } = useScrollTo();
-	const [isAnimationVisible] = useMediaQuery("(min-width: 768px)");
-	const subTitleColor = useColorModeValue("blackAlpha.600", "whiteAlpha.600");
-	const highlightColor = useColorModeValue("blue.500", "blue.500");
+	const isTabletUp = useMediaQuery("min-width: 768px");
 
 	let [count, setCount] = useState(0);
 	const [text] = useState([
-		"create modern UI based on your design,",
-		"build interactive UI using React,",
-		"develop responsive websites using Next.js."
+		"build Flutter apps for Android/iOS",
+		"convert design into modern UI",
+		"build interactive UI using React",
+		"develop websites using Next.js"
 	]);
 
-	const onClick = (e) => {
-		scrollToEl(e);
-	};
+	const onClick = (e) => scrollToEl(e);
 
 	useEffect(() => {
 		let interval = setInterval(() => {
@@ -51,111 +36,95 @@ export function WelcomeSection() {
 		return () => clearInterval(interval);
 	}, [count]);
 
-	useEffect(() => {
-		setIntroHeight(introRef.current?.offsetHeight);
-	}, [introRef, setIntroHeight]);
-
 	return (
 		<LazyMotion features={domAnimation}>
-			<Grid
-				as="section"
-				id="intro"
-				className="section"
-				gap={5}
-				templateAreas={[`"content"`, `"content"`, `"content animation"`]}
-				gridTemplateColumns={["1fr", "1fr", "1fr 0.5fr", "1fr 0.7fr"]}
-				alignItems="center"
-				ref={introRef}
-			>
-				<GridItem area="content" py={[0, 0, 10]}>
-					<Heading
-						as="h1"
-						size={["xl", "2xl", "2xl", "2xl", "3xl"]}
-						lineHeight="shorter !important"
-						mr={[null, null, null, "-25%"]}
-						tabIndex="0"
-						ref={ref}
-						sx={{
-							transform: isInView ? "none" : "translateX(-200px)",
-							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-						}}
-					>
-						<Highlight query={["passionate", "Vasile"]} styles={{ color: highlightColor }}>
-							Hi, I&apos;m Vasile a passionate front-end developer.
-						</Highlight>
-					</Heading>
-
-					<Flex direction="column" overflow="hidden" pos="relative" mt={3}>
-						<Text
-							fontSize={["lg", "x-large"]}
+			<section id="intro" className="section" ref={introRef}>
+				<div className="grid grid-cols-1 md:grid-cols-[1fr_0.5fr] lg:grid-cols-[1fr_0.7fr] gap-4 items-center">
+					<div className="py-5 md:py-10">
+						<h1
 							tabIndex="0"
 							ref={ref}
-							sx={{
+							className="text-3xl md:text-5xl xl:text-6xl font-bold"
+							style={{
 								transform: isInView ? "none" : "translateX(-200px)",
 								opacity: isInView ? 1 : 0,
 								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 							}}
 						>
-							I
-							<Text
-								as="span"
-								pos="absolute"
-								top={count === 0 ? "0" : count === 1 ? "-100%" : count === 2 ? "-200%" : "0"}
-								left={3}
-								display="flex"
-								flexDirection="column"
-								transition="top .5s ease-in-out"
-								tabIndex="0"
+							<p>
+								Hi, I&apos;m <mark>Vasile</mark> a <mark>passionate</mark> software developer.
+							</p>
+						</h1>
+
+						<div className="mt-3 relative flex flex-col overflow-hidden">
+							<p
+								ref={ref}
+								className="text-[17px] md:text-2xl transform-none opacity-100"
+								style={{
+									transform: isInView ? "none" : "translateX(-200px)",
+									opacity: isInView ? 1 : 0,
+									transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+								}}
 							>
-								{text.map((element) => (
-									<TextElement key={element} element={element} />
-								))}
-							</Text>
-						</Text>
-					</Flex>
+								I
+								<span
+									className="absolute flex flex-col transition-all duration-500 ease-in-expo"
+									style={{
+										top:
+											count === 0
+												? "0"
+												: count === 1
+												? "-100%"
+												: count === 2
+												? "-200%"
+												: count === 3
+												? "-300%"
+												: "0",
+										left: "13px"
+									}}
+								>
+									{text.map((element) => (
+										<TextElement key={element} element={element} />
+									))}
+								</span>
+							</p>
+						</div>
 
-					<Text
-						fontSize={["md", "lg"]}
-						color={subTitleColor}
-						mt={3}
-						mb={10}
-						tabIndex="0"
-						ref={ref}
-						sx={{
-							transform: isInView ? "none" : "translateX(-200px)",
-							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-						}}
-					>
-						Stick around to see some of my work.
-					</Text>
-					<Button
-						aria-label="Latest projects"
-						p="0"
-						ref={ref}
-						sx={{
-							transform: isInView ? "none" : "translateY(50px)",
-							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
-						}}
-					>
-						<Link
-							href="#projects"
-							onClick={onClick}
-							style={{ display: "block", padding: "0 16px", lineHeight: "40px" }}
+						<p
+							tabIndex="0"
+							ref={ref}
+							className="mt-3 mb-10 text-gray-500 text-xl"
+							style={{
+								transform: isInView ? "none" : "translateX(-200px)",
+								opacity: isInView ? 1 : 0,
+								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+							}}
 						>
-							See my latest projects
-						</Link>
-					</Button>
-				</GridItem>
+							Stick around to see some of my work.
+						</p>
+						<div
+							ref={ref}
+							style={{
+								transform: isInView ? "none" : "translateY(50px)",
+								opacity: isInView ? 1 : 0,
+								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+							}}
+						>
+							<Link
+								href="#projects"
+								onClick={onClick}
+								tabIndex="0"
+								className="btn"
+								aria-label="Latest projects"
+							>
+								See my latest projects
+							</Link>
+						</div>
+					</div>
 
-				{isAnimationVisible && (
-					<GridItem area="animation">
-						<WelcomeAnimation />
-					</GridItem>
-				)}
-			</Grid>
+					{isTabletUp && <WelcomeAnimation />}
+				</div>
+			</section>
 		</LazyMotion>
 	);
 }
@@ -167,17 +136,17 @@ function TextElement({ element }) {
 	const isInView = useInView(ref, { once: true });
 
 	return (
-		<Text
-			as="span"
+		<span
 			tabIndex="0"
 			ref={ref}
-			sx={{
+			className="text-[17px] md:text-2xl"
+			style={{
 				transform: isInView ? "none" : "translateX(-200px)",
 				opacity: isInView ? 1 : 0,
 				transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 			}}
 		>
 			{firstWord} {restWords}
-		</Text>
+		</span>
 	);
 }

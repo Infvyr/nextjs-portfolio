@@ -1,14 +1,12 @@
-"use client";
+import { AiOutlineLoading } from "react-icons/ai";
 
-import { Center, Flex, Spinner, Text } from "@chakra-ui/react";
-
-export function Loader({ width = "100vw" }) {
+export function Loader({ textClassNames = "" }) {
 	return (
-		<Center width={width} minHeight="calc(100vh - 90px - 110px)">
-			<Flex direction="column">
-				<Spinner width="60px" height="60px" />
-				<Text>Loading...</Text>
-			</Flex>
-		</Center>
+		<div className="flex-center flex-col gap-5 ite">
+			<div className="animate-spin ">
+				<AiOutlineLoading size={30} />
+			</div>
+			<p className={textClassNames}>Loading...</p>
+		</div>
 	);
 }

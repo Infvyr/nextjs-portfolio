@@ -1,38 +1,23 @@
 "use client";
 
 import { LazyMotion, domAnimation, m } from "framer-motion";
-import { Flex, Heading as Heading } from "@chakra-ui/react";
-import { initial, animate, exit, transition } from "util/motions";
+import { initial, animate, exit, transition } from "utils/motions";
 
 export function HeadingDivider({ title = "" }) {
 	return (
-		<Flex as="header" alignItems="center">
+		<header className="flex items-center">
 			<LazyMotion features={domAnimation}>
-				<Heading
-					as={m.h2}
-					display="flex"
-					alignItems="center"
-					gap={4}
-					pos="relative"
-					w="100%"
-					textTransform="uppercase"
+				<m.h2
 					tabIndex="0"
-					sx={{
-						"&:after": {
-							content: '""',
-							backgroundImage: "inherit",
-							height: "1px",
-							flex: 1
-						}
-					}}
 					initial={initial}
 					animate={animate}
 					exit={exit}
 					transition={transition}
+					className="heading-divider"
 				>
 					{title}
-				</Heading>
+				</m.h2>
 			</LazyMotion>
-		</Flex>
+		</header>
 	);
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { navigationHeight } from "util/theme-config";
+import { navigationHeight } from "utils/theme-config";
 
 export function useScrollTo() {
 	const [height, setHeight] = useState(navigationHeight);

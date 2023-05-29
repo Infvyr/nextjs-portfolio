@@ -1,7 +1,9 @@
-"use client";
-
 import { Loader } from "components";
 
 export default function Loading() {
-	return <Loader width="100%" />;
+	return (
+		<div className="flex-center">
+			<Loader textClassNames="text-2xl text-center" />
+		</div>
+	);
 }

@@ -1,68 +1,7 @@
-"use client";
-
-import { Fragment, useRef } from "react";
+import { useRef } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import { Box, Heading, SimpleGrid, Flex, Text, Tooltip } from "@chakra-ui/react";
 import { HeadingDivider } from "components";
-import { AiFillHtml5, AiOutlineAntDesign, AiFillGithub, AiFillGitlab } from "react-icons/ai";
-import { DiCss3, DiVisualstudio } from "react-icons/di";
-import { IoLogoJavascript } from "react-icons/io";
-import { FaReact, FaWordpressSimple, FaFigma, FaTrello } from "react-icons/fa";
-import { BsBootstrap } from "react-icons/bs";
-import { TbBrandNextjs, TbBrandTailwind } from "react-icons/tb";
-import AdobeXDIcon from "public/assets/svg/adobexd.svg";
-import ZeplinIcon from "public/assets/svg/zeplin.svg";
-import WebstormIcon from "public/assets/svg/webstorm.svg";
-import JiraIcon from "public/assets/svg/jira.svg";
-import HeadlessUiIcon from "public/assets/svg/headlessui.svg";
-import MuiIcon from "public/assets/svg/mui.svg";
-import ChakraIcon from "public/assets/svg/chakraui.svg";
-import StyledIcon from "public/assets/svg/styledcomponents.svg";
-
-const Technologies = [
-	{
-		category: "Front-end",
-		items: [
-			{ name: "HTML", icon: <AiFillHtml5 size={32} /> },
-			{ name: "CSS", icon: <DiCss3 size={32} /> },
-			{ name: "JS", icon: <IoLogoJavascript size={32} /> },
-			{ name: "React", icon: <FaReact size={32} /> },
-			{ name: "Next", icon: <TbBrandNextjs size={32} /> }
-		]
-	},
-	{
-		category: "UI packages",
-		items: [
-			{ name: "Tailwind CSS", icon: <TbBrandTailwind size={32} /> },
-			{ name: "MUI", icon: <MuiIcon width={32} /> },
-			{ name: "AntD", icon: <AiOutlineAntDesign size={32} /> },
-			{ name: "Bootstrap", icon: <BsBootstrap size={32} /> },
-			{ name: "Chakra", icon: <ChakraIcon width={32} /> },
-			{ name: "styled components", icon: <StyledIcon width={32} /> },
-			{ name: "HeadlessUI", icon: <HeadlessUiIcon width={32} /> }
-		]
-	},
-	{
-		category: "UI tools",
-		items: [
-			{ name: "Figma", icon: <FaFigma size={32} /> },
-			{ name: "Zeplin", icon: <ZeplinIcon width={36} /> },
-			{ name: "XD", icon: <AdobeXDIcon width={32} /> }
-		]
-	},
-	{
-		category: "Other tools",
-		items: [
-			{ name: "WordPress CMS", icon: <FaWordpressSimple size={32} /> },
-			{ name: "Jira", icon: <JiraIcon width={32} /> },
-			{ name: "Trello", icon: <FaTrello size={32} /> },
-			{ name: "Github", icon: <AiFillGithub size={32} /> },
-			{ name: "Gitlab", icon: <AiFillGitlab size={32} /> },
-			{ name: "VsCode", icon: <DiVisualstudio size={32} /> },
-			{ name: "WebStorm", icon: <WebstormIcon width={32} /> }
-		]
-	}
-];
+import { TECHNOLOGIES } from "constants";
 
 export function TechnologiesSection() {
 	const textRef = useRef(null);
@@ -72,14 +11,12 @@ export function TechnologiesSection() {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<Box as="section" id="tech" className="section">
+			<section id="tech" className="section">
 				<HeadingDivider title="Technologies" />
-				<Text
-					fontSize="xl"
-					pt={5}
-					pb={10}
-					tabIndex="0"
+				<p
 					ref={textRef}
+					tabIndex="0"
+					className="my-5 text-2xl"
 					style={{
 						transform: isTextInView ? "none" : "translateX(-200px)",
 						opacity: isTextInView ? 1 : 0,
@@ -87,16 +24,17 @@ export function TechnologiesSection() {
 					}}
 				>
 					I work with the following technologies and tools:
-				</Text>
+				</p>
 
-				{!!Technologies.length && (
-					<SimpleGrid columns={[1, null, 4]} spacing={[5, 10]}>
-						{Technologies.map((tech, index) => {
+				{!!TECHNOLOGIES.length && (
+					<div className="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
+						{TECHNOLOGIES.map((tech, index) => {
 							return (
-								<Box
+								<div
 									key={tech.category}
 									ref={stackRef}
-									sx={{
+									className="flex flex-col gap-4 flex-1 md:flex-auto"
+									style={{
 										transform: isStackInView
 											? "none"
 											: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
@@ -106,26 +44,30 @@ export function TechnologiesSection() {
 										}s`
 									}}
 								>
-									<Heading as="h3" fontSize="2xl" tabIndex="0">
+									<h3 tabIndex="0" className="text-2xl font-bold">
 										{tech.category}
-									</Heading>
-									<Flex py={5} gap={4} flexWrap="wrap">
+									</h3>
+									<div className="flex items-center flex-wrap gap-x-5 gap-y-8">
 										{tech.items.map((item) => (
-											<Fragment key={item.name}>
-												<Tooltip label={item.name} hasArrow arrowSize={8}>
-													<span aria-label={item.name} tabIndex="0" role="img">
-														{item.icon}
-													</span>
-												</Tooltip>
-											</Fragment>
+											<div key={item.name} className="group relative flex">
+												<span tabIndex="0" role="img">
+													{item.icon}
+												</span>
+												<span
+													className="group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity bg-gray-800 text-sm text-gray-100 rounded-md absolute left-1/2
+    -translate-x-1/2 translate-y-full opacity-0 mt-3 mx-auto px-2 w-max"
+												>
+													{item.name}
+												</span>
+											</div>
 										))}
-									</Flex>
-								</Box>
+									</div>
+								</div>
 							);
 						})}
-					</SimpleGrid>
+					</div>
 				)}
-			</Box>
+			</section>
 		</LazyMotion>
 	);
 }

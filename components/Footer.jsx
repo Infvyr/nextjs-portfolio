@@ -1,31 +1,31 @@
 "use client";
 
-import { useContext } from "react";
-import { LazyMotion, domAnimation } from "framer-motion";
-import { Flex, Text } from "@chakra-ui/react";
+import { useRef } from "react";
+import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { ConnectMedia, ScrollTop } from "components";
-import { LayoutContext } from "context/layout";
 
 export function AppFooter() {
-	const { footerRef } = useContext(LayoutContext);
+	const footerRef = useRef(null);
+	const isInView = useInView(footerRef, { once: true });
 	const year = new Date().getFullYear();
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<Flex
-				as="footer"
-				py={10}
-				justifyContent="space-between"
-				alignItems="center"
-				flexDirection={["column", "row"]}
-				gap={5}
-				borderTop="1px solid currentColor"
+			<footer
 				ref={footerRef}
+				className="container-md py-10 mt-5 relative before:absolute before:top-0 before:left-4 before:w-[calc(100%-16px)] before:h-[1px] before:bg-gray-100"
+				style={{
+					transform: isInView ? "none" : "translateX(-200px)",
+					opacity: isInView ? 1 : 0,
+					transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1.5s"
+				}}
 			>
-				<Text>Copyright &copy; {year} Vasile Novatchii</Text>
-				<ScrollTop />
-				<ConnectMedia />
-			</Flex>
+				<div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-5">
+					<p className="font-light">Copyright &copy; {year} Vasile Novatchii</p>
+					<ScrollTop />
+					<ConnectMedia />
+				</div>
+			</footer>
 		</LazyMotion>
 	);
 }

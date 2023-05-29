@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import { Box, Flex, Text } from "@chakra-ui/react";
 import { HeadingDivider } from "components";
 import { TimeLine } from "./TimeLine";
 
@@ -12,69 +11,49 @@ export function AboutSection() {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<Box as="section" id="about" className="section">
+			<section id="about" className="section">
 				<HeadingDivider title="About me" />
-				<Flex direction="column" gap={3} pt={10} pb={16} maxW="5xl">
-					<Text
-						fontSize="xl"
+				<div className="pt-10 pb-16 max-w-5xl flex flex-col gap-3">
+					<div
 						tabIndex="0"
 						ref={ref}
-						sx={{
+						className="text-xl font-light leading-relaxed"
+						style={{
 							transform: isInView ? "none" : "translateX(-200px)",
 							opacity: isInView ? 1 : 0,
 							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 						}}
 					>
-						My name is Vasile. I have been a front-end developer for 5 years. I have started my
-						programming journey as Wordpress developer. Now I&apos;m in love with React and Next.js.
-						In the future I see myself learning React Native or Flutter, because of my big interest
-						in these technologies.
-					</Text>
-					<Text
-						fontSize="xl"
-						tabIndex="0"
-						ref={ref}
-						sx={{
-							transform: isInView ? "none" : "translateX(-200px)",
-							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
-						}}
-					>
-						I have studied computer science at Technical University of Moldova where I definitely
-						fall in love with the front-end part of web development.
-					</Text>
-					<Text
-						fontSize="xl"
-						tabIndex="0"
-						ref={ref}
-						sx={{
-							transform: isInView ? "none" : "translateX(-200px)",
-							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1.5s"
-						}}
-					>
-						I enjoy learning technologies I like. I love diving into React world and Next.js
-						framework.
-					</Text>
-					<Text
-						fontSize="xl"
-						tabIndex="0"
-						ref={ref}
-						sx={{
-							transform: isInView ? "none" : "translateX(-200px)",
-							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 2s"
-						}}
-					>
-						Spending time working, improving, reading interesting front-end articles or watching new
-						videos of popular teachers is something I enjoy a lot, as it is something I use for many
-						hours daily. It allows me to be familiar with cutting-edge technologies and save time
-						when I start some project.
-					</Text>
-				</Flex>
+						<p>
+							My name is Vasile. I successfully graduated Technical University of Moldova, computer
+							science faculty.
+						</p>
+						<p>
+							During my university years, I developed a deep passion for web programming, and I
+							consistently engaged in learning new concepts and techniques in this field.
+						</p>
+						<p>So, officially, my programming journey began in 2017 as a WordPress developer.</p>
+						<p className="my-3.5">
+							I enjoy learning technologies that interest me, which is why I dedicated a significant
+							amount of time to working with WordPress.
+						</p>
+						<p>
+							One day, I decided to try something new, and I started learning React. I was so
+							excited to see how fast I can build a website with it, and how easy it is to maintain
+							it. Consequently, I quickly learnt Next.js and I used it to build some company
+							projects working in a team with a backend dev.
+						</p>
+						<p className="my-3.5">
+							In december 2023, I had an opportunity to start working as a React developer for a
+							company with the possibility of transitioning to mobile development. I was skeptical
+							about it at first, but I decided to give it a try, and I don&lsquo;t regret it. Now, I
+							thoroughly enjoy working with Flutter and Dart.
+						</p>
+					</div>
+				</div>
 
 				<TimeLine />
-			</Box>
+			</section>
 		</LazyMotion>
 	);
 }

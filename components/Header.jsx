@@ -1,23 +1,23 @@
 "use client";
 
-import { Container, Flex, useMediaQuery } from "@chakra-ui/react";
-import { Logo, Menu, MobileMenu, ColorMode, ConnectMedia } from "components";
+import { Logo, Menu, ConnectMedia, MobileMenu, ThemeSwitcher } from "components";
+import { useMediaQuery } from "utils";
 
 export function AppHeader() {
-	const [isMobile] = useMediaQuery("(max-width: 767px)");
+	const isMobile = useMediaQuery();
 
 	return (
-		<Flex as="header" py={[2, 5]} pos="sticky" top={0} bg="inherit" boxShadow="sm" zIndex={10}>
-			<Container maxW="container.xl">
-				<Flex justify="space-between" align="center" flexWrap="wrap">
+		<header className="pt-5 pb-5 sticky top-0 z-10 bg-inherit shadow-sm">
+			<div className="container-md">
+				<div className="flex justify-between items-center gap-3">
 					<Logo />
 					{isMobile ? <MobileMenu /> : <Menu />}
-					<Flex align="center" gap={2}>
+					<div className="flex items-center gap-5">
 						{!isMobile && <ConnectMedia />}
-						<ColorMode />
-					</Flex>
-				</Flex>
-			</Container>
-		</Flex>
+						<ThemeSwitcher />
+					</div>
+				</div>
+			</div>
+		</header>
 	);
 }

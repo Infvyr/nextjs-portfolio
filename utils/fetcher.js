@@ -3,4 +3,4 @@ export const fetcher = (url) =>
 		headers: {
 			Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_TOKEN}`
 		}
-	}).then((r) => r.json());
+	}).then((response) => response.json());
