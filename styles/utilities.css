@@ -1,13 +1,13 @@
 @tailwind utilities;
 @layer utilities {
-    .hide-scroll-bar::-webkit-scrollbar {
-        display: none;
-    }
-    .hide-scroll-bar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .flex-center {
-        @apply flex items-center justify-center;
-    }
+	.hide-scroll-bar::-webkit-scrollbar {
+		display: none;
+	}
+	.hide-scroll-bar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	.flex-center {
+		@apply flex items-center justify-center;
+	}
 }

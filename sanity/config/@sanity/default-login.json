@@ -1,8 +1,8 @@
 {
-  "providers": {
-    "mode": "append",
-    "redirectOnSingle": false,
-    "entries": []
-  },
-  "loginMethod": "dual"
+	"providers": {
+		"mode": "append",
+		"redirectOnSingle": false,
+		"entries": []
+	},
+	"loginMethod": "dual"
 }

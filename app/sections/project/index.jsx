@@ -4,10 +4,10 @@ import Link from "next/link";
 import useSWR from "swr";
 import { HeadingDivider, Loader } from "components";
 import { fetcher } from "utils/fetcher";
-import { SiteRoutes } from "constants";
 import Error from "../../error";
 import { ErrorBoundary } from "react-error-boundary";
 import { Projects } from "../../projects/components/Projects";
+import { SITE_ROUTES } from "../../../constants";
 
 const url = `${process.env.NEXT_PUBLIC_SANITY_URL}${process.env.NEXT_PUBLIC_SANITY_LATEST_PROJECTS}`;
 
@@ -42,7 +42,7 @@ export function ProjectsSection() {
 					</Suspense>
 
 					<Link
-						href={SiteRoutes.projects}
+						href={SITE_ROUTES.projects}
 						tabIndex={-1}
 						aria-label="Go to projects page"
 						ref={btnRef}

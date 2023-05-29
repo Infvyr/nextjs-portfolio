@@ -6,7 +6,7 @@ import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useScrollTo } from "hooks";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { initial, animate, exit, transition } from "utils";
-import { menu, SiteRoutes, SiteStrings } from "constants";
+import { MENU_OPTIONS, SITE_ROUTES, SITE_STRINGS } from "../constants";
 
 export function Menu({ onClick = () => {} }) {
 	let content, mainMenu, backMenu;
@@ -23,7 +23,7 @@ export function Menu({ onClick = () => {} }) {
 	mainMenu = (
 		<m.nav initial={initial} animate={animate} exit={exit} transition={transition} role="menu">
 			<ul className="flex justify-center gap-5 flex-col md:flex-row items-start md:items-center">
-				{menu?.sort(sortAscending).map((menuItem) => (
+				{MENU_OPTIONS.sort(sortAscending).map((menuItem) => (
 					<li key={menuItem.id}>
 						<a
 							href={menuItem.url}
@@ -42,21 +42,21 @@ export function Menu({ onClick = () => {} }) {
 	backMenu = (
 		<m.div initial={initial} animate={animate} exit={exit} transition={transition}>
 			<Link
-				href={SiteRoutes?.home}
-				title={SiteStrings?.backToMainPageTitle}
+				href={SITE_ROUTES.home}
+				title={SITE_STRINGS.backToMainPageTitle}
 				className="icon-link-btn"
 			>
 				<span>
 					<BsArrowReturnLeft />
 				</span>
-				{SiteStrings?.backToMainText}
+				{SITE_STRINGS.backToMainText}
 			</Link>
 		</m.div>
 	);
 
-	content = pathname === SiteRoutes?.projects ? backMenu : mainMenu;
+	content = pathname === SITE_ROUTES.projects ? backMenu : mainMenu;
 
-	if (menu?.length === 0) {
+	if (MENU_OPTIONS.length === 0) {
 		return null;
 	}
 

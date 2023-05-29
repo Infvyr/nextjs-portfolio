@@ -15,7 +15,7 @@
 		"isolatedModules": true,
 		"noEmit": true
 	},
-	"include": ["app", "public", "styles", "pages", "constants", "utils"],
+	"include": ["app", "public", "styles", "pages", "utils"],
 	"paths": {},
 	"exclude": ["node_modules"]
 }
