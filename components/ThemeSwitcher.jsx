@@ -21,7 +21,7 @@ export const ThemeSwitcher = () => {
 	return (
 		<LazyMotion features={domAnimation}>
 			<m.button
-				onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+				onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
 				initial={initial}
 				animate={animate}
 				exit={exit}
