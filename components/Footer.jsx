@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import { ConnectMedia, ScrollTop } from "components";
+import { ConnectMedia } from "./ConnectMedia";
+import { ScrollTop } from "./ScrollTop";
 
 export function AppFooter() {
 	const footerRef = useRef(null);

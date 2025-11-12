@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { BsGrid } from "react-icons/bs";
-import { ConnectMedia, Menu } from "components";
+import { ConnectMedia } from "./ConnectMedia";
+import { Menu } from "./Menu";
 import {
 	animate,
 	animateMobile,

@@ -1,20 +1,20 @@
+import { AppFooter, AppHeader, AppMetadata } from "components";
+import { ThemeContext as ThemeContextProvider } from "context";
 import { Suspense } from "react";
-import { AppHeader, AppFooter, AppMetadata } from "components";
-import Loading from "./loading";
 import "styles/globals.css";
-import { ThemeContext } from "context";
+import Loading from "./loading";
 
 export const metadata = { ...AppMetadata };
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body>
-				<ThemeContext>
+				<ThemeContextProvider>
 					<AppHeader />
 					<Suspense fallback={<Loading />}>{children}</Suspense>
 					<AppFooter />
-				</ThemeContext>
+				</ThemeContextProvider>
 			</body>
 		</html>
 	);

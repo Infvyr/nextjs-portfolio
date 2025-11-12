@@ -1,11 +1,9 @@
-"use client";
-
-import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import { WelcomeAnimation } from "./IntroAnimation";
 import { useScrollTo } from "hooks";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "utils";
+import { WelcomeAnimation } from "./IntroAnimation";
 
 export function WelcomeSection() {
 	const ref = useRef(null);
@@ -74,12 +72,12 @@ export function WelcomeSection() {
 											count === 0
 												? "0"
 												: count === 1
-												? "-100%"
-												: count === 2
-												? "-200%"
-												: count === 3
-												? "-300%"
-												: "0",
+													? "-100%"
+													: count === 2
+														? "-200%"
+														: count === 3
+															? "-300%"
+															: "0",
 										left: "13px"
 									}}
 								>

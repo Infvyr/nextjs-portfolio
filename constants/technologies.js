@@ -1,23 +1,29 @@
-import { AiFillHtml5, AiOutlineAntDesign, AiFillGithub, AiFillGitlab } from "react-icons/ai";
-import { DiCss3, DiVisualstudio } from "react-icons/di";
-import { IoLogoJavascript } from "react-icons/io";
-import { FaReact, FaWordpressSimple, FaFigma, FaTrello } from "react-icons/fa";
+import { AiFillGithub, AiFillGitlab, AiFillHtml5, AiOutlineAntDesign } from "react-icons/ai";
 import { BsBootstrap } from "react-icons/bs";
-import { TbBrandNextjs, TbBrandTailwind } from "react-icons/tb";
+import { DiCss3, DiVisualstudio } from "react-icons/di";
+import { FaBitbucket, FaFigma, FaReact, FaTrello, FaWordpressSimple } from "react-icons/fa";
+import { IoLogoJavascript } from "react-icons/io";
 import { RiFlutterFill } from "react-icons/ri";
-import AdobeXDIcon from "public/assets/svg/adobexd.svg";
-import ZeplinIcon from "public/assets/svg/zeplin.svg";
-import WebstormIcon from "public/assets/svg/webstorm.svg";
-import JiraIcon from "public/assets/svg/jira.svg";
-import HeadlessUiIcon from "public/assets/svg/headlessui.svg";
-import MuiIcon from "public/assets/svg/mui.svg";
-import ChakraIcon from "public/assets/svg/chakraui.svg";
-import StyledIcon from "public/assets/svg/styledcomponents.svg";
+import {
+	SiAdobexd,
+	SiAndroidstudio,
+	SiChakraui,
+	SiFirebase,
+	SiJira,
+	SiMui,
+	SiStyledcomponents,
+	SiWebstorm,
+	SiXcode
+} from "react-icons/si";
+import { TbBrandHeadlessui, TbBrandNextjs, TbBrandTailwind } from "react-icons/tb";
 
 export const TECHNOLOGIES = [
 	{
 		category: "Mobile",
-		items: [{ name: "Flutter", icon: <RiFlutterFill size={32} /> }]
+		items: [
+			{ name: "Flutter", icon: <RiFlutterFill size={32} /> },
+			{ name: "Firebase", icon: <SiFirebase size={32} /> }
+		]
 	},
 	{
 		category: "Front-end",
@@ -28,32 +34,34 @@ export const TECHNOLOGIES = [
 			{ name: "React", icon: <FaReact size={32} /> },
 			{ name: "Next", icon: <TbBrandNextjs size={32} /> },
 			{ name: "Tailwind CSS", icon: <TbBrandTailwind size={32} /> },
-			{ name: "MUI", icon: <MuiIcon width={32} /> },
+			{ name: "MUI", icon: <SiMui size={32} /> },
 			{ name: "AntD", icon: <AiOutlineAntDesign size={32} /> },
 			{ name: "Bootstrap", icon: <BsBootstrap size={32} /> },
-			{ name: "Chakra", icon: <ChakraIcon width={32} /> },
-			{ name: "styled components", icon: <StyledIcon width={32} /> },
-			{ name: "HeadlessUI", icon: <HeadlessUiIcon width={32} /> }
+			{ name: "Chakra", icon: <SiChakraui size={32} /> },
+			{ name: "styled components", icon: <SiStyledcomponents size={32} /> },
+			{ name: "HeadlessUI", icon: <TbBrandHeadlessui size={32} /> }
 		]
 	},
 	{
 		category: "UI tools",
 		items: [
 			{ name: "Figma", icon: <FaFigma size={32} /> },
-			{ name: "Zeplin", icon: <ZeplinIcon width={36} /> },
-			{ name: "XD", icon: <AdobeXDIcon width={32} /> }
+			{ name: "Adobe XD", icon: <SiAdobexd size={32} /> }
 		]
 	},
 	{
 		category: "Other tools",
 		items: [
-			{ name: "WordPress CMS", icon: <FaWordpressSimple size={32} /> },
-			{ name: "Jira", icon: <JiraIcon width={32} /> },
+			{ name: "Android Studio", icon: <SiAndroidstudio size={32} /> },
+			{ name: "VsCode", icon: <DiVisualstudio size={32} /> },
+			{ name: "WebStorm", icon: <SiWebstorm size={32} /> },
+			{ name: "Xcode", icon: <SiXcode size={32} /> },
+			{ name: "Jira", icon: <SiJira size={32} /> },
 			{ name: "Trello", icon: <FaTrello size={32} /> },
 			{ name: "Github", icon: <AiFillGithub size={32} /> },
 			{ name: "Gitlab", icon: <AiFillGitlab size={32} /> },
-			{ name: "VsCode", icon: <DiVisualstudio size={32} /> },
-			{ name: "WebStorm", icon: <WebstormIcon width={32} /> }
+			{ name: "Bitbucket", icon: <FaBitbucket size={32} /> },
+			{ name: "WordPress CMS", icon: <FaWordpressSimple size={32} /> }
 		]
 	}
 ];

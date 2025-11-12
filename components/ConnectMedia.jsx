@@ -1,7 +1,5 @@
-"use client";
-
 import { LazyMotion, domAnimation, m } from "framer-motion";
-import { initial, animate, exit, transition } from "utils/motions";
+import { animate, exit, initial, transition } from "utils/motions";
 import { SOCIAL_MEDIA } from "../constants";
 
 export function ConnectMedia() {

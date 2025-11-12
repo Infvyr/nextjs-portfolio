@@ -39,3 +39,5 @@ next-env.d.ts
 .idea
 .vscode
 .fleet
+MIGRATION_SUMMARY.md
+sanity.config.*
