@@ -1,6 +1,19 @@
 @tailwind base;
+
 @layer base {
+	html {
+		color-scheme: light;
+	}
+
+	:where(.dark) html {
+		color-scheme: dark;
+	}
+
 	body {
-		@apply bg-brand-light text-brand-dark dark:bg-brand-dark dark:text-brand-light;
+		@apply bg-brand-light text-brand-dark transition-colors duration-300;
+	}
+
+	:where(.dark) body {
+		@apply bg-brand-dark text-brand-light;
 	}
 }

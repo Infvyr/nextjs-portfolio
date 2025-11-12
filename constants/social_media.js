@@ -1,4 +1,4 @@
-import { BsFillEnvelopeOpenFill, BsGithub, BsLinkedin } from "react-icons/bs";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
 
 export const SOCIAL_MEDIA = [
 	{
@@ -12,11 +12,5 @@ export const SOCIAL_MEDIA = [
 		icon: <BsGithub />,
 		title: "Visit Github profile",
 		url: "https://github.com/Infvyr"
-	},
-	{
-		id: "mail",
-		icon: <BsFillEnvelopeOpenFill />,
-		title: "Send me an email",
-		url: "mailto://vnovatchi@gmail.com"
 	}
 ];

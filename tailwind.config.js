@@ -1,33 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: [
-		"./app/**/*.{js,ts,jsx,tsx}",
-		"./pages/**/*.{js,ts,jsx,tsx}",
-		"./components/**/*.{js,ts,jsx,tsx}"
+		"./app/**/*.{js,jsx,ts,tsx}",
+		"./components/**/*.{js,jsx,ts,tsx}",
+		"./pages/**/*.{js,jsx,ts,tsx}"
 	],
 	darkMode: "class",
 	theme: {
 		extend: {
 			colors: {
-				brand: {
-					light: "#FBF8F3",
-					dark: "#232332",
-					purple: "#7928CA",
-					pink: "#FF0080"
-				},
-				blue: {
-					lighter: "#71c5ee",
-					light: "#3182ce",
-					normal: "#025091"
-				},
-				card: {
-					dark: "rgba(255, 255, 255, 0.04)",
-					light: "rgba(255, 255, 255, 0.80)"
-				},
-				badge: {
-					dark: "rgba(226, 232, 240, 0.16)",
-					light: "#F8F0E3"
-				}
+				"brand-light": "#FBF8F3",
+				"brand-dark": "#232332",
+				"brand-purple": "#7928CA",
+				"brand-pink": "#FF0080",
+				"blue-lighter": "#71c5ee",
+				"blue-light": "#3182ce",
+				"blue-normal": "#025091",
+				"card-dark": "rgba(255, 255, 255, 0.04)",
+				"card-light": "rgba(255, 255, 255, 0.80)",
+				"badge-dark": "rgba(226, 232, 240, 0.16)",
+				"badge-light": "#F8F0E3"
 			},
 			transitionTimingFunction: {
 				"in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
@@ -46,8 +38,8 @@ module.exports = {
 			addUtilities({
 				".flex-center": {
 					display: "flex",
-					"align-items": "center",
-					"justify-content": "center"
+					alignItems: "center",
+					justifyContent: "center"
 				}
 			});
 		}

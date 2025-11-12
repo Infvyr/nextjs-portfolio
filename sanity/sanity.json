@@ -4,8 +4,8 @@
 		"name": "nextp"
 	},
 	"api": {
-		"projectId": "d7e1b197",
-		"dataset": "production"
+		"projectId": "${SANITY_PROJECT_ID}",
+		"dataset": "${SANITY_DATASET}"
 	},
 	"plugins": [
 		"@sanity/base",

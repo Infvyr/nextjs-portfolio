@@ -1,8 +1,6 @@
-"use client";
-
-import { useRef } from "react";
-import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { HeadingDivider } from "components";
+import { LazyMotion, domAnimation, useInView } from "framer-motion";
+import { useRef } from "react";
 import { TimeLine } from "./TimeLine";
 
 export function AboutSection() {

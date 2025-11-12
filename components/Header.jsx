@@ -1,7 +1,11 @@
 "use client";
 
-import { Logo, Menu, ConnectMedia, MobileMenu, ThemeSwitcher } from "components";
+import { ConnectMedia, MobileMenu } from "components";
+import { Logo } from "./Logo";
+import { Menu } from "./Menu";
+// import { MobileMenu } from "./MobileMenu";
 import { useMediaQuery } from "utils";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export function AppHeader() {
 	const isMobile = useMediaQuery();

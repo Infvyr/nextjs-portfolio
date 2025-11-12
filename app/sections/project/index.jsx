@@ -1,13 +1,13 @@
-import { Suspense, useRef } from "react";
+import { HeadingDivider, Loader } from "components";
 import { domAnimation, LazyMotion, useInView } from "framer-motion";
 import Link from "next/link";
-import useSWR from "swr";
-import { HeadingDivider, Loader } from "components";
-import { fetcher } from "utils/fetcher";
-import Error from "../../error";
+import { Suspense, useRef } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { Projects } from "../../projects/components/Projects";
+import useSWR from "swr";
+import { fetcher } from "utils/fetcher";
 import { SITE_ROUTES } from "../../../constants";
+import Error from "../../error";
+import { Projects } from "../../projects/components/Projects";
 
 const url = `${process.env.NEXT_PUBLIC_SANITY_URL}${process.env.NEXT_PUBLIC_SANITY_LATEST_PROJECTS}`;
 
