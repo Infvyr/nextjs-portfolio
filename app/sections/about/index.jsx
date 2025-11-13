@@ -23,29 +23,34 @@ export function AboutSection() {
 						}}
 					>
 						<p>
-							My name is Vasile. I successfully graduated Technical University of Moldova, computer
-							science faculty.
-						</p>
-						<p>
-							During my university years, I developed a deep passion for web programming, and I
-							consistently engaged in learning new concepts and techniques in this field.
-						</p>
-						<p>So, officially, my programming journey began in 2017 as a WordPress developer.</p>
-						<p className="my-3.5">
-							I enjoy learning technologies that interest me, which is why I dedicated a significant
-							amount of time to working with WordPress.
-						</p>
-						<p>
-							One day, I decided to try something new, and I started learning React. I was so
-							excited to see how fast I can build a website with it, and how easy it is to maintain
-							it. Consequently, I quickly learnt Next.js and I used it to build some company
-							projects working in a team with a backend dev.
+							I'm a results-oriented Flutter and Frontend Developer with over 7 yrs of combined
+							experience in building and maintaining high-quality, cross-platform mobile and web
+							applications. His technical expertise spans Flutter, React, and Next.js, with a strong
+							focus on developing responsive interfaces and ensuring seamless collaboration between
+							design and backend teams. He has proven success in migrating production apps from
+							React Native, integrating real-time communication through FCM and Ably, and
+							contributing to complex products such as a dating platform and a digital wallet.
 						</p>
 						<p className="my-3.5">
-							In december 2023, I had an opportunity to start working as a React developer for a
-							company with the possibility of transitioning to mobile development. I was skeptical
-							about it at first, but I decided to give it a try, and I don&lsquo;t regret it. Now, I
-							thoroughly enjoy working with Flutter and Dart.
+							I graduated from the Technical University of Moldova with a degree in Computer
+							Science, where his passion for web programming first took shape. During my studies, I
+							immersed mymself in learning modern technologies, constantly expanding his skills and
+							exploring new programming concepts to stay ahead in a fast-evolving industry.
+						</p>
+						<p>
+							My professional journey officially began in 2017 as a WordPress developer. This early
+							stage honed my understanding of web architecture and UI implementation, while
+							nurturing my curiosity for scalable, maintainable code. My enthusiasm for modern
+							frontend development led me to learn React & Next.js, where I quickly discovered the
+							speed and flexibility of building dynamic interfaces.
+						</p>
+						<p className="my-3.5">
+							In December 2022, I transitioned into a role focused on React development, which soon
+							opened the door to mobile app development with Flutter - a move that reshaped my
+							career. Initially hesitant, I embraced the challenge and found a new passion for
+							building performant, elegant, and maintainable mobile experiences. Today, I continue
+							to push for clean architecture, scalability, and accessibility in every project I
+							undertake.
 						</p>
 					</div>
 				</div>
